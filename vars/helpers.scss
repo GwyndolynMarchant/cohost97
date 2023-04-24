@@ -1,0 +1,63 @@
+////////////////
+// Helpers
+////////////////
+
+@mixin pixelated {
+  // Thanks https://www.bennet.org/blog/pixels-please-image-scaling-css/
+  -ms-interpolation-mode:   nearest-neighbor;       // IE 7+ (non-standard property)
+  image-rendering:          -webkit-crisp-edges;    // Safari 6 - 9
+  image-rendering:          -moz-crisp-edges;       // Firefox 3.6 - 64
+  image-rendering:          crisp-edges;            // Firefox 65+
+  image-rendering:          pixelated;              // Chrome 41+, Edge 76+, Safari 10+
+}
+
+@mixin offset($top: auto, $right: auto, $bottom: auto, $left: auto) {
+    top:    $top;
+    right:  $right;
+    bottom: $bottom;
+    left:   $left;
+}
+
+@mixin size($width: auto, $height: auto) {
+    width:  $width;
+    height: $height;
+}
+
+@mixin pseudo-element {
+    content:    " ";
+    position:   absolute;
+}
+
+@mixin background-gradient($angle, $start, $end) {
+    background: linear-gradient($angle, $start, $end);
+}
+
+@mixin replace-icon-svg($url: "") {
+    &:before {
+        @include            pseudo-element;
+        @include            size(32px, 32px);
+        background:         url($url);
+        background-repeat:  no-repeat;
+    }
+
+    > svg {
+        @include size(32px, 32px);
+        > * { display: none; }
+    }
+}
+
+@mixin drop-icon-before($url: "") {
+    &:before {
+        @include            pseudo-element;
+        @include            size(16px, 16px);
+        margin-left:       -20px;
+        margin-top:         -2px;
+        margin-right:        8px;
+
+        background-image:   url($url);
+    }
+
+    padding-left: 28px;
+}
+
+@mixin capitalize-sentence { &:first-letter { text-transform: capitalize; } }

@@ -1,0 +1,18 @@
+/*┌─────────────────────────────────────────────────────┐
+  │                  CUSTOM BACKGROUND                  │
+  └─────────────────────────────────────────────────────┘*/  
+body.bg-background {
+    background-color:    var(--win9x-teal);
+}
+
+@mixin change-background($element: main) {
+    #{$element} {
+        background:      var(--wallpaper480) fixed center;
+        background-size: cover;
+    }
+
+    @media (max-height: 720px )                          { #{$element} { background-image: var(--wallpaper720 ); } }
+    @media (min-height: 721px ) and (max-height: 1080px) { #{$element} { background-image: var(--wallpaper1080); } }
+    @media (min-height: 1081px) and (max-height: 1500px) { #{$element} { background-image: var(--wallpaper1500); } }
+    @media (min-height: 1501px)                          { #{$element} { background-image: var(--wallpaperMax ); } }
+}

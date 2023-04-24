@@ -1,0 +1,11 @@
+@-moz-document url("https://cohost.org/rc/posts/unpublished") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                    DRAFTS                           │
+      └─────────────────────────────────────────────────────┘*/   
+      * {}
+
+	#app main section div.renderIfVisible {
+        background:     var(--win9x-lightgray);
+        margin-bottom:  16em;
+    }
+}

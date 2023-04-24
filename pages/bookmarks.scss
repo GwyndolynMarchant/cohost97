@@ -1,0 +1,29 @@
+@-moz-document regexp("https?://cohost.org/.+/tagged/.+") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                  BOOKMARKED TAGS                    │
+      └─────────────────────────────────────────────────────┘*/
+    * {}
+
+    h6.h6 {
+        @include            taskbar-itemize;
+        @include            offset(1px, auto, auto, 76px);
+        position:           fixed;
+        padding-top:        8px;
+
+        @include            drop-icon-before("https://shadenexus.com/img/win9x-folder.png");
+        @include            win9x-inset-decoration;
+        box-shadow:         var(--win9x-border-outset);
+        background-color:   var(--win9x-darkwhite);
+    }
+
+    h6.h6 + button {
+        position:   fixed;
+        @include    offset(38px, auto, auto, calc(76px + var(--taskbar-item-width)));
+        
+        @include    win9x-office-comment;
+        @include    capitalize-sentence;
+        @include    bubble-arrow(after, -9px, auto, auto, 10%, 225deg);
+
+        &:hover, &:hover:after { background-color: var(--win9x-tangerine-yellow); }
+    }
+}

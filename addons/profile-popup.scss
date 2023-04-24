@@ -1,0 +1,11 @@
+@-moz-document domain("cohost.org") { * {}
+    /*┌─────────────────────────────────────────────────────┐
+      │               ADDON - PROFILE POPUP                 │
+      └─────────────────────────────────────────────────────┘*/ 
+
+    #osmose-popup {
+        box-shadow:  6px  6px var(--win9x-black-shadow), 
+                     1px  1px var(--win9x-black),
+                    -1px -1px var(--win9x-white);
+    }
+}

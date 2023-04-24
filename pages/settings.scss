@@ -1,0 +1,76 @@
+@-moz-document regexp("https://cohost.org/rc/user/settings") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                       SETTINGS                      │
+      └─────────────────────────────────────────────────────┘*/   
+      * {}
+
+    #app header + div > div.container {
+    	&:before {
+    		position: static;
+    		content:  " ";
+    	}
+        
+    	#password-email, #password-email ~ div {
+    		@import   'components/prose';
+            @include  win9x-window-decorations;
+    		@include  win9x-window-title(h4);
+
+    		border-radius: 0;
+	        background:    var(--win9x-lightgray);
+	        padding:       4px;
+	        
+	        div { row-gap: 0px; }
+
+    		h4, label {
+                @include win9x-default-font;
+    			@include capitalize-sentence;
+    		}
+
+    		h4 {
+    			color:       var(--win9x-white);
+    			line-height: 32px;
+    		}
+
+    		h5 {
+    			@include     win9x-underline-heading;
+    			font-size:   14pt;
+    		}
+
+    		h6 {
+    			@include         win9x-underline-heading;
+    			font-size:       12pt;
+    			text-decoration: none;
+    		}
+
+    		input {
+    			@include win9x-input-box;
+
+    			&[type="checkbox"] {
+    				@include size(16px, 16px);
+
+                    &:checked:after {
+                        padding-left:   2px;
+                        content:        "✓";
+                        vertical-align: top;
+
+                        color:          black;
+                        font-weight:    bold;
+                        font-size:      8pt;                        
+                    }
+    			}
+    		}
+
+    		button { @include win9x-button(48px); }
+
+    		div.rounded-lg:has(svg+div) {
+    			margin-top:  8px;
+    			position:    relative;
+    			@include     win9x-office-comment;
+    			@include     bubble-arrow(after, -9px, auto, auto, 25%, 225deg);
+
+                &.bg-mango-100      { @include replace-icon-svg("https://shadenexus.com/img/win9x-info.png"); }
+                &.bg-strawberry-100 { @include replace-icon-svg("https://shadenexus.com/img/win9x-warn.png"); }
+    		}
+    	}
+    }
+}

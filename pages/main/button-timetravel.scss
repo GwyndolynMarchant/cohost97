@@ -1,0 +1,5 @@
+#app main section:not(.text-sidebarText) > div > div:last-child {
+    > span.hidden:first-child { display: none; }
+    > a:last-child   { @include win9x-iconize("Older Posts"); }
+    > a:nth-child(2) { @include win9x-iconize("Newer Posts"); }
+} 

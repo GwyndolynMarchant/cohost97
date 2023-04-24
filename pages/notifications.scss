@@ -1,0 +1,62 @@
+@-moz-document url("https://cohost.org/rc/project/notifications") {
+
+    /*┌─────────────────────────────────────────────────────┐
+      │                    NOTIFICATIONS                    │
+      └─────────────────────────────────────────────────────┘*/
+      * {}
+
+    #app main section > div {
+        @include win9x-window;
+        
+        > div {
+            border-radius: 0;
+
+            &:first-child {
+                justify-content:    flex-start;
+
+                &:before {
+                    content:        "Notifications -";
+                    padding-right:  0.2em;
+                }
+            }
+
+            &:first-child:before, &:first-child > time, &:first-child {
+                color:          var(--win9x-white);
+                font:           bold 0.9em var(--font-primary);
+                text-transform: capitalize;
+            }
+
+            &:nth-child(n+2) {
+                @include    win9x-default-font;
+                font-size:  10pt;
+
+                &:hover {
+                    background: var(--win9x-white);
+                    padding:    6px;
+                    margin:     6px 5px 5px 5px;
+                    border:     1px dotted var(--win9x-gray);
+                    outline:    5px  solid var(--win9x-white);
+                }
+            }
+
+            button[aria-expanded] > svg > path { fill: var(--win9x-black); }
+
+            > p { 
+                // Comment preview
+                position:   relative;
+                margin-top: 8px;
+                padding:    4px 8px;
+                @include    win9x-office-comment;
+                @include    bubble-arrow(before, -9px, auto, auto, 20px, -135deg);
+            }
+
+            img[src^="https://staging.cohostcdn.org/attachment/"] {
+                box-shadow:     none;
+                outline:        1px solid var(--win9x-black);
+                border-radius:  0px;
+            }
+        }
+
+        @include win9x-window-title("> div:first-child");
+    }
+}

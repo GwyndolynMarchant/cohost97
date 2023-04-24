@@ -1,0 +1,103 @@
+#app > div > header {
+    height:             32px;
+    box-shadow:         var(--win9x-border-outset);
+    background-color:   var(--win9x-lightgray);
+
+    a[href="https://cohost.org/"] {
+
+        // Start Button
+        @include    win9x-button(56px);
+        position:   fixed;
+        top:        2px;
+
+        &, > svg { height: 24px; }
+        > svg {
+            padding:    4px;
+            color:      var(--win9x-black);
+
+            > path:first-child { fill: var(--cohost-purple); }
+        }
+    }
+
+    ~ div { margin-top: 32px; }
+
+    nav {
+        > form > button:active, > a:active {
+            @include            win9x-inset-decoration;
+            background-color:   var(--win9x-darkwhite);
+        }
+
+        > div:first-child {
+            > button {
+                @include size(var(--taskbar-item-width), 28px);
+                @include win9x-default-font;
+                @include win9x-inset-decoration;
+
+                > div {
+                    padding:    0;
+                    background: none;
+                }
+
+                img {
+                    @include        size(20px, 20px);
+                    margin-top:     7px;
+                    margin-left:    4px;
+                }
+
+                svg { fill: var(--win9x-black); }
+            }
+
+            > ul {
+                @include        offset(8px, 4px, auto, auto);
+                z-index:        10;
+                
+                border-radius:  0px;
+                box-shadow:     var(--win9x-border-outset);
+                background:     var(--win9x-lightgray);
+
+                > li {
+                    border-radius:  0px;
+                    padding:        0px 4px;
+                    margin:         3px 4px;
+
+                    &:hover { background-color: var(--cohost-purple); }
+                }
+            }
+        }
+    }
+}
+
+/*┌─────────────────────────────────────────────────────┐
+  │                      TIMELINES                      │
+  └─────────────────────────────────────────────────────┘*/
+#app main section:not(.text-sidebarText) > div.flex-row:first-child {
+    @include    offset(0, auto, auto, -6px);
+    position:   fixed;
+    z-index:    10;
+
+    > ul.flex-row {
+        background:     none;
+        border-radius:  0;
+
+        > li {
+            @include        taskbar-itemize;
+            text-transform: capitalize;
+
+            // Active
+            &.bg-foreground {
+                @include            win9x-inset-decoration;
+                background-color:   var(--win9x-darkwhite);
+            }
+
+            // Inactive
+            &.bg-foreground-800 {
+                margin-left:    2px;
+                box-shadow:     var(--win9x-border-outset);
+                background:     none;
+            }
+
+            &:first-child { @include drop-icon-before("https://shadenexus.com/img/win9x-users.png");   }
+            &:last-child  { @include drop-icon-before("https://shadenexus.com/img/win9x-usercal.png"); }
+        }            
+    }
+}

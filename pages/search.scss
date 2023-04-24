@@ -1,0 +1,46 @@
+@-moz-document regexp("https?://cohost.org/rc/search(\\?q=.*)?") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                    SEARCH PAGE                      │
+      └─────────────────────────────────────────────────────┘*/   
+      * {} 
+
+    #app main section > div {
+        @include        win9x-window-decorations;
+        @include        win9x-window-title(h1);
+
+        background:     var(--win9x-lightgray);
+        margin-bottom:  16em;
+        
+        h1 { 
+            justify-content:    flex-start;
+            
+            font:               bold 12pt var(--font-primary);
+            text-transform:     capitalize;
+            color:              var(--win9x-white);
+            letter-spacing:     inherit;
+            
+            padding:            6px;
+            border-radius:      0;
+        }
+
+        h2 {
+            @include        win9x-underline-heading;
+            font-size:      1.2em;
+        }
+
+        input {
+            @include        win9x-inset-decoration;
+            height:         24px;
+            font-family:    var(--font-primary);
+            font-size:      13px;
+        }
+
+        &, input { padding: 4px; }
+        p.h5 {
+            position:   relative;
+            padding:    4px;
+            @include    win9x-office-comment;
+            @include    bubble-arrow(before, -9px, auto, auto, 10%, 225deg);
+        }
+    }
+}

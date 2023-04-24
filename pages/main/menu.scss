@@ -1,0 +1,74 @@
+/*┌─────────────────────────────────────────────────────┐
+  │                  LEFT MENU                          |
+  └─────────────────────────────────────────────────────┘*/   
+@media (min-width: 1024px) {
+    #app ul[id^=headlessui-menu-items] {
+        @include    offset(32px, auto, auto, 0px);
+        position:   fixed;
+        padding:    2px 4px 12px 48px;
+        row-gap:    0px;
+
+        background:
+            linear-gradient(185deg, var(--win9x-darkgray), var(--win9x-gray)),
+            var(--win9x-lightgray);
+
+        border-radius:  0;
+        box-shadow:     var(--win9x-border-outset);
+        color:          var(--win9x-black);
+        
+        &:hover {
+            background:
+                linear-gradient(185deg, var(--cohost-purple), rgb(181, 87, 129)),
+                var(--win9x-lightgray);
+        }
+
+        &, &:hover {
+            background-size:    48px calc(100% - 3px), 100% 100%;
+            background-repeat:  no-repeat, repeat;
+        }
+
+        &:before {
+            @include    offset(8px, auto, auto, 0);
+            position:   absolute;
+            
+            content:        "𝗖𝗼𝗵𝗼𝘀𝘁 97";
+            writing-mode:   vertical-lr;
+            font-size:      2.5em;
+            color:          var(--win9x-white);
+        }
+
+        %fixed-height {
+            padding:     8px 16px 8px 6px;
+            height:     32px;
+            margin:     0;
+            border:     none;
+        }
+
+        > a {
+            margin:  1px 0;
+            height: 32px;
+
+            &:nth-child(2) ~ ul { margin-top: 0px; }
+        }
+
+        li {
+            @extend %fixed-height;
+
+            &:hover {
+                color:              var(--win9x-white);
+                background-color:   var(--cohost-purple);
+                border-radius:      0;
+                @extend             %fixed-height;
+            }
+        }
+
+        > a[href="https://cohost.org/rc/project/notifications"] svg ~ svg {
+            > path {
+                fill:   var(--win9x-office-comment);
+                stroke: var(--win9x-black);
+            }
+
+            > text { fill: var(--win9x-black); }
+        }
+    }
+}

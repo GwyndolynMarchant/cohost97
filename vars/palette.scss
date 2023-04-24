@@ -1,0 +1,52 @@
+@-moz-document domain("cohost.org") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                       PALETTE                       │
+      └─────────────────────────────────────────────────────┘*/
+    * {}
+    :root {
+        
+        --win9x-black-raw:      10, 10, 10;
+        --win9x-black:          rgb(var(--win9x-black-raw));
+        --win9x-black-shadow:   rgba(var(--win9x-black-raw), var(--shadowOpacity));
+
+        --win9x-darkgray:   #808080; 
+        --win9x-gray:       #a0a0a4;
+        --win9x-lightgray:  #c0c0c0;
+        --win9x-darkwhite:  #dfdfdf;
+        --win9x-offwhite:   #fffbf0;
+        --win9x-white:      #ffffff;
+
+        --win9x-blue:       #0000ff;
+        --win9x-darkblue:   #000080;
+        --win9x-teal:       #007b7b;
+
+        --win9x-vivid-cerulean:         #02A5FF;
+        --win9x-electric-orange:        rgb(var(--win9x-electric-orange-raw));
+        --win9x-electric-orange-raw:    255, 51, 0;
+        --win9x-ryb-green:              #66CC33;
+        --win9x-tangerine-yellow:       #FFCC00;
+
+        --win9x-office-comment: #fdffcd;
+        
+        --cohost-purple: rgb(var(--color-foreground));
+
+        --win9x-border-outset:
+            inset -1px -1px var(--win9x-black),
+            inset  1px  1px var(--win9x-white),
+            inset -2px -2px var(--win9x-gray),
+            inset  2px  2px var(--win9x-darkwhite);
+
+        --font-primary: "Segoe UI",   "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --font-code:    "Courier New", "Courier Prime",   Courier,         monospace;
+        
+        --filter-outline:
+            drop-shadow( 1px  0px 0px var(--win9x-black))
+            drop-shadow( 0px  1px 0px var(--win9x-black))
+            drop-shadow( 0px -1px 0px var(--win9x-black))
+            drop-shadow(-1px -0px 0px var(--win9x-black));
+
+        /* Cohost Overrides */
+        --color-sidebar-text:   var(--win9x-black-raw);
+        --color-sidebar-accent: var(--win9x-electric-orange-raw);
+    }
+}

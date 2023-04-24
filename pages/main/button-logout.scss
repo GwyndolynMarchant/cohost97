@@ -1,0 +1,20 @@
+form[action="https://cohost.org/rc/logout"] {
+    position:   fixed;
+    @include    offset(40px, 8px, auto, auto);
+
+    > button {
+        display:        flex;
+        flex-direction: column;
+        @include        replace-icon-svg("https://shadenexus.com/img/win9x-shutdown.png");
+
+        &, &:hover {
+            background: none;
+            border:     none;
+        }
+        
+        > span {
+            margin-top: 28px;
+            @include    win9x-icon-label;
+        }
+    }
+}

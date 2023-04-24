@@ -1,0 +1,59 @@
+@-moz-document regexp("https?://cohost.org/.+/post/.*") {
+    * {}
+
+    @import "components/private-note";
+
+    /*┌─────────────────────────────────────────────────────┐
+      │                COMMENTS SECTIONS                    │
+      └─────────────────────────────────────────────────────┘*/
+
+    #app div[data-view="post-preview"] > article {
+        + div, ~ div > div {
+            border-radius:  0;
+            background:     none;
+            box-shadow:     none;
+        }
+
+        + div textarea {
+            @include win9x-inset-decoration;
+            padding: 4px 8px;
+        }
+
+        + div button { @include win9x-button(48px); }
+
+        ~ div {
+            > div a.mask { filter: var(--filter-outline); }
+            > h4 { @include win9x-underline-heading; }
+        }
+    }
+
+    article[data-comment-id] {
+        box-shadow:         0px -1px inset var(--win9x-darkgray);
+        background-color:   var(--win9x-office-comment);
+        border:             1px solid var(--win9x-black);
+        border-radius:      4px;
+        padding:            4px;
+
+        div.prose + div.flex-row {
+            > * {
+                @include win9x-button(64px);
+                padding: 2px 4px;
+                
+                svg {
+                    margin: 0 auto;
+                    width:  24px;
+                    * { fill: var(--win9x-black); }
+                }
+
+                > button { @include size(100%, 100%); }
+            }
+        }
+
+        + div.border-l {
+            position:       relative;
+            border-left:    none;
+            
+            @include        bubble-arrow(after, -8px, auto, auto, 32px, 225deg);
+        }
+    }
+}

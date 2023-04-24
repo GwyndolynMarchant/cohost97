@@ -1,0 +1,54 @@
+@-moz-document regexp("https://cohost.org/rc/project/follow(ing|ers)") {
+	* {}
+
+	@import 'components/backgrounds';
+	@include change-background("header + div");
+
+	#root {
+		header + div > div {
+
+			&:before { content: " "; }
+
+			> div {
+				@include win9x-window;
+				@include win9x-window-title(h1);
+
+				> div {
+					gap:        0px;
+					margin-top: 0px;
+
+					> div { // Entry
+						> a { 
+							padding: 0px;
+							> img {
+								position: 	relative;
+								@include 	size(48px, 48px);
+								@include 	offset(4px, auto, auto, 4px);
+							}
+						}
+						
+						> div {
+							@include win9x-default-font;
+							> div { gap: 0px; }
+						}
+
+						> button {
+							@include 		win9x-button(36px);
+							border: 		none;
+							padding: 		0px 8px;
+							margin-right: 	4px;
+						}
+
+						padding-bottom: 	4px;
+						border-bottom: 		1px solid var(--win9x-gray);
+					}
+				}
+
+				> button {
+					@include 	win9x-button(64px);
+					margin: 	16px auto 4px auto;
+				}
+			}
+		}
+	}
+}

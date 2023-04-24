@@ -1,0 +1,35 @@
+/* ==UserStyle==
+@name           Cohost97
+@namespace      shadenexus.com/cohost
+@version        0.10.0
+@description    Style that makes cohost look like Microsoft Windows 95/98
+@author         Gwyndolyn Marchant
+@updateURL      https://gist.githubusercontent.com/GwyndolynMarchant/1bf1ec7885e193231f3e59d01b689b06/raw/cohost97.user.css
+
+@preprocessor   default
+@advanced       text    wallpaper           "Wallpaper (no max height)"         "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.jpg)"
+@advanced       text    wallpaper1500       "Wallpaper at max-height 1500"      "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.1500.jpg)"
+@advanced       text    wallpaper1080       "Wallpaper at max-height 1080"      "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.1080.jpg)"
+@advanced       text    wallpaper720        "Wallpaper at max-height 720"       "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.720.jpg)"
+@advanced       text    wallpaper480        "Wallpaper at max-height 480"       "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.480.jpg)"
+@advanced       number  taskbar-item-width  "The width of items on the taskbar" [148, 128, 256,  2, "px"]
+@advanced       range   shadowOpacity       "Drop shadow opacity"               [60,    0, 100, 10,  "%"]
+==/UserStyle== */
+
+@import 'vars/helpers';
+@import 'vars/win9x-elements';
+@import 'vars/palette';
+
+@import 'pages/main/main';
+@import 'pages/notifications';
+@import 'pages/search';
+@import 'pages/profile';
+@import 'pages/comments';
+@import 'pages/bookmarks';
+@import 'pages/compose';
+@import 'pages/following';
+@import 'pages/drafts';
+@import 'pages/settings';
+
+@import 'addons/deduplication';
+@import 'addons/profile-popup';

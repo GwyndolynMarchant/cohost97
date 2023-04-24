@@ -1,0 +1,107 @@
+@-moz-document regexp("https?://cohost.org/.+") {
+    /*┌─────────────────────────────────────────────────────┐
+      │                    PROFILE PAGES                    │
+      └─────────────────────────────────────────────────────┘*/*{}  
+
+    @import "components/avatars";
+
+    #app img[src*="header"][src*="profile"] {
+        position:   fixed;
+        object-fit: cover;
+        z-index:    -10;
+        @include    size(100%, 100%);
+        @include    offset(0, auto, auto, 0);
+    }
+
+    /*┌─────────────────────────────────────────────────────┐
+      │                  PROFILE SUMMARY                    │
+      └─────────────────────────────────────────────────────┘*/
+
+    #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) {
+        // Profile info
+        @include        win9x-window-decorations;
+        margin-top:     4em;
+        padding:        0px 4px 1rem 4px;
+        grid-column:    1 / 1;
+        align-self:     start;
+        
+        background:     var(--win9x-lightgray);
+        border-radius:  0;
+
+        &, h1, h2, h3                        { @include win9x-default-font;              }
+        button[id^="headlessui-menu-button"] { @include offset(-12px, -4px, auto, auto); }
+        a, ul svg                            { color:   var(--win9x-darkblue);           }
+
+        @include win9x-window-title(h1);
+        h1 {
+            @include        offset(-12px, 0px, auto, 0px);
+            position:       absolute;
+            height:         24px;
+            padding-left:   0.5em;
+            z-index:        -1;
+
+            font-size:      12pt;
+            text-align:     left;
+
+            a { color: var(--win9x-white); }
+        }
+
+        a[href^="https://cohost.org/rc/project/"],
+        button.align-middle {
+            margin:         2px 0px 2px 4px;
+            height:         32px;
+            
+            font-size:      10pt;
+            font-weight:    normal;
+            color:          var(--win9x-black);
+            background:     none;
+
+            box-shadow:     var(--win9x-border-outset);
+            border:         none;
+            border-radius:  0;
+
+            &:active {
+                @include            win9x-inset-decoration;
+                background-color:   var(--win9x-darkwhite);    
+            }
+        }
+
+        div.mask:has(img[src*="avatar"][src*="profile"]) { margin-top: 3em; }
+    }
+
+    /*┌─────────────────────────────────────────────────────┐
+      │                     PINNED TAGS                     │
+      └─────────────────────────────────────────────────────┘*/
+    #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) {
+        div.uppercase {
+            text-transform: capitalize;
+            + ul { border-top: none; } // Pinned Tags list
+        }
+
+        margin-top: 5rem;
+
+        > div > div {
+            @include        win9x-window-decorations;
+            @include        win9x-default-font;
+            @include        win9x-window-title("> div:first-child");
+            background:     var(--win9x-lightgray);
+            border-radius:  0;
+
+            > div {
+                border: none;
+
+                &:first-child {
+                    margin:         3px;
+                    border-radius:  0px;
+                    color:          var(--win9x-white);
+                }
+            }
+        }
+    }
+
+    /*┌─────────────────────────────────────────────────────┐
+      │                     THE REST                        │
+      └─────────────────────────────────────────────────────┘*/
+
+    #app > div > header + div > div.container > div.grid > div { z-index: 10; }
+}

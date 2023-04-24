@@ -1,0 +1,153 @@
+@-moz-document domain("cohost.org") { * {}
+
+    @import '../components/cursors';
+    @import '../components/backgrounds';
+    @import '../components/avatars';
+
+    @import 'button-timetravel';
+    @import 'button-newpost';
+    @import 'button-quickpost';
+    @import 'button-logout';
+    @import 'bar-taskbar';
+    @import 'bar-sidebar';
+    @import 'menu';
+
+    @include change-background;
+
+    /* --- Window dressings --- */
+    #app main {
+        section:not(.text-sidebarText) {
+            > div:nth-child(2) > button.flex-row.rounded-lg {
+                @include win9x-office-comment;
+                @include bubble-arrow(after, -8px, auto, auto, 50%, 225deg);
+
+                position:   relative;
+                margin-top: -4em;
+            }
+        }
+
+        > div {
+            position: relative;
+            &:before { content: " "; }
+        }
+    }
+    
+    #app div[data-view="post-preview"] {
+        @include            win9x-window;
+        grid-template-rows: 48px 1fr;
+        column-gap:          6px;
+        row-gap:             0px;
+
+        ////////////// POST CONTENTS /////////////////////
+        > article > *,
+        > article ~ div     { grid-column: 1 / span 2; }
+        > a + article > div { grid-column: 2 / span 1; }
+
+        > article {
+            display:    contents;
+            position:   relative;
+            box-shadow: none;
+            background: none;
+
+            @include win9x-window-title("> header");
+
+            > header, > footer, & { border-radius: 0; }
+
+            > header {
+                a {
+                    color:  var(--win9x-white);
+                    font:   0.9em var(--font-primary);
+
+                    &[rel="author"] {
+                        max-width:      400px;
+                        font-weight:    bold;
+                    }
+                }
+            }
+
+            > div {
+                /* Actual post contents */
+                @include        win9x-shadow-inset(0px, -1px, 0px, 1px);
+                @include        win9x-border-inset(false, true, false, true);
+                margin-right:   2px;
+                padding:        1px;
+                background:     var(--win9x-white);
+
+                &:first-of-type {
+                    margin-top: 4px;
+                    @include    win9x-border-inset(true);
+                    @include    win9x-shadow-inset(1px, -1px, 0px, 1px);
+                }
+
+                &:last-of-type {
+                    @include win9x-border-inset(false, false, true);
+                    @include win9x-shadow-inset(0px, -1px, -1px, 1px);
+                }
+
+                &:only-of-type { @include win9x-shadow-inset; }
+
+                /* --- POST CONTENT WARNINGS --- */
+
+                div.text-cherry {
+                    position:           relative;
+                    background-color:   var(--win9x-office-comment);
+                    border-color:       var(--win9x-black);
+                    border-width:       1px;
+
+                    @include            win9x-default-font;
+
+                    &.border-gray-300   { @include replace-icon-svg("https://shadenexus.com/img/win9x-restrict.png"); }
+                    &.border-cherry-300 { @include replace-icon-svg("https://shadenexus.com/img/win9x-warn.png");     }
+                }
+
+                div.break-words { overflow-wrap: anywhere; }
+            }
+
+            > hr { display: none; }
+
+            > footer {
+                &, > div > div { background: none; }
+
+                a { color: var(--win9x-black); }
+
+                a[title^="share"], a[title^="edit"], button { box-shadow: var(--win9x-border-outset); }
+                a[title^="share"] { padding: 2px 16px; }
+                a[title^="edit"] {
+                    @include size(56px, calc(1.7em));
+
+                    svg {
+                        width:          24px;
+                        margin-left:    16px;
+                        margin-top:      2px;
+                    }
+                }
+                button {
+                    position: relative;
+
+                    &[title^="unlike"] {
+                        @include replace-icon-svg("https://shadenexus.com/img/win9x-mshearts.png");
+
+                        &:before {
+                            top:              2px;
+                            margin-left:    -12px;
+                            background-size: 24px 24px;
+                        }
+                    }
+
+                    @include size(56px, calc(1.7em));
+
+                    > svg { margin: 1px 16px; }
+                }
+            }
+        }
+    }
+
+    #app main section > div { border-radius: 0; }
+    
+    #app div[data-view="post-preview"] > article > header time,
+    #app div[data-view="post-preview"] > article > header svg,
+    [id^="headlessui-menu-button"] > svg {
+        color:  var(--win9x-white);
+        font:   0.9em var(--font-primary) !important;
+    }
+}

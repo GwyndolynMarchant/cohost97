@@ -1,0 +1,36 @@
+@-moz-document domain("cohost.org") { * {}
+    /*┌─────────────────────────────────────────────────────┐
+      │                   ADDON - DEDUP                     │
+      └─────────────────────────────────────────────────────┘*/ 
+    #app article {
+        > div.-cohost-dedup-hidden-chost {
+            opacity:    25%;
+            filter:     grayscale(100%);
+
+            div[data-post-body="true"] {
+                max-height:     32px;
+                overflow-y:     hidden;
+            }
+
+            max-height:     128px;
+            margin-bottom:  0;
+        }
+
+        > a.-cohost-dedup-link {
+            @include        size(calc(100% - 32px), 128px);
+            position:       absolute;
+            padding-top:    0;
+            margin-bottom:  0;
+            margin-top:     52px;
+            margin-left:    32px;
+
+            background:             url("https://shadenexus.com/img/win9x-recycle.png");
+            background-repeat:      no-repeat;
+            background-size:        auto auto;
+            background-position:    center center;
+            
+            color:  rgba(white, 0.0);
+            
+        }
+    }
+}

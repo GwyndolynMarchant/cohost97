@@ -1,0 +1,18 @@
+/*┌─────────────────────────────────────────────────────┐
+  │                      AVATARS                        │
+  └─────────────────────────────────────────────────────┘*/
+.mask:has(img[src*="/avatar/"]) {
+    filter:     var(--filter-outline);
+    padding:    2px;
+}
+
+a.mask.aspect-square.h-16.w-16[title^="@"],
+div.mask.aspect-square.h-16.w-16 {
+    grid-column: 1 / span 1;
+    grid-row:    2 / span 1;
+
+    > img {
+        @include    size(58px, 58px);
+        margin:     6px 3px;
+    }
+}

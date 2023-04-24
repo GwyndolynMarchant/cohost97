@@ -1,0 +1,160 @@
+//////////////////////////////
+// Win9x elements
+//////////////////////////////
+
+@mixin win9x-default-font {
+    font:           normal 10pt var(--font-primary);
+    color:          var(--win9x-black);
+    letter-spacing: 0rem;
+}
+
+@mixin taskbar-itemize {
+    @include        size(var(--taskbar-item-width), 28px);
+    margin-top:     1px;
+    border-radius:  0;
+    
+    @include        win9x-default-font;
+    text-align:     left;
+    line-height:    12px;
+}
+
+@mixin bubble-arrow($element: before, $top: auto, $right: auto, $bottom: auto, $left: auto, $angle: 90deg) {
+    &:#{$element} {
+        @include    pseudo-element;
+        @include    offset($top, $right, $bottom, $left);
+        @include    size(16px, 16px);
+
+        transform:           rotate($angle);
+        background-color:    var(--win9x-office-comment);
+        border:              0px solid var(--win9x-black);
+        border-right-width:  1px;
+        border-bottom-width: 1px;
+    }
+}
+
+@mixin win9x-button($button-width) {
+    @include        win9x-default-font;
+    text-transform: capitalize;
+    font-weight:    normal;
+    font-size:      10pt;
+
+    margin:         2px 0px 2px 4px;
+    min-width:      $button-width;
+    height:         32px;
+    
+    box-shadow:     var(--win9x-border-outset);
+    border-radius:  0;
+    background:     none;
+
+    &:active {
+        @include            win9x-inset-decoration;
+        background-color:   var(--win9x-darkwhite);
+    }
+}
+
+@mixin win9x-installer-heading {
+    font:           italic bold 32pt Arial, sans-serif;
+    text-shadow:    4px 4px 0 var(--win9x-black);
+    color:          var(--win9x-white);
+}
+
+@mixin win9x-window-title($element, $angle: 90deg) {
+    &:hover #{$element} { @include background-gradient($angle, var(--cohost-purple), rgb(181, 87, 129)); }
+            #{$element} {
+                @include    background-gradient($angle, var(--win9x-darkgray), var(--win9x-gray));
+                font:       bold 12pt var(--font-primary);
+                color:      var(--win9x-white);
+                padding:    2px 6px;
+            }
+}
+
+@mixin win9x-shadow-inset($u: 1px, $r: -1px, $d: -1px, $l: 1px) {
+    box-shadow: inset $r $d var(--win9x-darkwhite), inset $l $u var(--win9x-black);
+}
+
+@mixin win9x-border-inset($u: false, $r: false, $d: false, $l: false) {
+    @if $u { border-top:    1px solid var(--win9x-darkgray); }
+    @if $l { border-left:   1px solid var(--win9x-darkgray); }
+    @if $r { border-right:  1px inset var(--win9x-white);    }
+    @if $d { border-bottom: 1px inset var(--win9x-white);    }
+}
+
+@mixin win9x-icon-label() {
+    @include            win9x-default-font;
+    text-align:         center;
+    text-transform:     capitalize;
+
+    background-color:   var(--win9x-gray);
+    border:             1px dotted var(--win9x-black);
+}
+
+@mixin win9x-iconize($text) {
+    position:       relative;
+    margin-bottom:  16px;
+    max-width:      64px;
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+
+    > svg {
+        filter:         var(--filter-outline);
+        margin-bottom:  4px;
+        padding:        0 0 0 0;
+        @include        size(32px, 32px);
+    }
+
+    &:after {
+        content: $text;
+        @include win9x-icon-label;
+    }
+}
+
+@mixin win9x-inset-decoration {
+    @include win9x-shadow-inset;
+    @include win9x-border-inset(true, true, true, true);
+}
+
+@mixin win9x-window-decorations {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+}
+
+@mixin win9x-office-comment {
+    border:             1px solid var(--win9x-black);
+    border-radius:      4px;
+    background-color:   var(--win9x-office-comment);
+    @include            win9x-default-font;
+    
+    p:first-letter {    text-transform: capitalize; }
+
+    p, div {
+        font-size:      13px;
+        line-height:    14px;
+    }
+}
+
+@mixin win9x-underline-heading {
+    font-family:        var(--font-primary);
+    color:              var(--win9x-black);
+    letter-spacing:     0rem;
+    font-weight:        bold;
+    font-size:          2em;
+    text-align:         center;
+    text-decoration:    underline;
+    
+    > a            { color:             var(--cohost-purple); }
+    &:first-letter { text-transform:    capitalize;           }
+}
+
+@mixin win9x-input-box {
+    @include            win9x-inset-decoration;
+    @include            win9x-default-font;
+    background-color:   white;
+    border-radius:      0;
+}
+
+@mixin win9x-window {
+    @include        win9x-window-decorations;
+    background:     var(--win9x-lightgray);
+    padding:        4px;
+    border-radius:  0px;
+}

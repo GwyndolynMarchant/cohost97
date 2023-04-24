@@ -1,0 +1,1833 @@
+@charset "UTF-8";
+/* ==UserStyle==
+@name           Cohost97
+@namespace      shadenexus.com/cohost
+@version        0.10.0
+@description    Style that makes cohost look like Microsoft Windows 95/98
+@author         Gwyndolyn Marchant
+@updateURL      https://gist.githubusercontent.com/GwyndolynMarchant/1bf1ec7885e193231f3e59d01b689b06/raw/cohost97.user.css
+
+@preprocessor   default
+@advanced       text    wallpaper           "Wallpaper (no max height)"         "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.jpg)"
+@advanced       text    wallpaper1500       "Wallpaper at max-height 1500"      "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.1500.jpg)"
+@advanced       text    wallpaper1080       "Wallpaper at max-height 1080"      "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.1080.jpg)"
+@advanced       text    wallpaper720        "Wallpaper at max-height 720"       "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.720.jpg)"
+@advanced       text    wallpaper480        "Wallpaper at max-height 480"       "url(https://shadenexus.com/img/nightlinez%20-%20billie%20420.480.jpg)"
+@advanced       number  taskbar-item-width  "The width of items on the taskbar" [148, 128, 256,  2, "px"]
+@advanced       range   shadowOpacity       "Drop shadow opacity"               [60,    0, 100, 10,  "%"]
+==/UserStyle== */
+@-moz-document domain("cohost.org") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                       PALETTE                       │
+    └─────────────────────────────────────────────────────┘*/
+  :root {
+    --win9x-black-raw: 10, 10, 10;
+    --win9x-black: rgb(var(--win9x-black-raw));
+    --win9x-black-shadow: rgba(var(--win9x-black-raw), var(--shadowOpacity));
+    --win9x-darkgray: #808080;
+    --win9x-gray: #a0a0a4;
+    --win9x-lightgray: #c0c0c0;
+    --win9x-darkwhite: #dfdfdf;
+    --win9x-offwhite: #fffbf0;
+    --win9x-white: #ffffff;
+    --win9x-blue: #0000ff;
+    --win9x-darkblue: #000080;
+    --win9x-teal: #007b7b;
+    --win9x-vivid-cerulean: #02A5FF;
+    --win9x-electric-orange: rgb(var(--win9x-electric-orange-raw));
+    --win9x-electric-orange-raw: 255, 51, 0;
+    --win9x-ryb-green: #66CC33;
+    --win9x-tangerine-yellow: #FFCC00;
+    --win9x-office-comment: #fdffcd;
+    --cohost-purple: rgb(var(--color-foreground));
+    --win9x-border-outset:
+        inset -1px -1px var(--win9x-black),
+        inset 1px 1px var(--win9x-white),
+        inset -2px -2px var(--win9x-gray),
+        inset 2px 2px var(--win9x-darkwhite);
+    --font-primary: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-code: "Courier New", "Courier Prime", Courier, monospace;
+    --filter-outline:
+        drop-shadow( 1px 0px 0px var(--win9x-black))
+        drop-shadow( 0px 1px 0px var(--win9x-black))
+        drop-shadow( 0px -1px 0px var(--win9x-black))
+        drop-shadow(-1px -0px 0px var(--win9x-black));
+    /* Cohost Overrides */
+    --color-sidebar-text: var(--win9x-black-raw);
+    --color-sidebar-accent: var(--win9x-electric-orange-raw);
+  }
+}
+@-moz-document domain("cohost.org") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                       CURSORS                       │
+    └─────────────────────────────────────────────────────┘*/
+  body, select {
+    cursor: url("data:application/octet-stream;base64,AAACAAEAICAAAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAgAAAAIAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAGAAAADAAAAAwAAAAYAAABGAAAAbAAAAHwAAAB/gAAAfwAAAH4AAAB8AAAAeAAAAHAAAABgAAAAQAAAAAAAAAAAAAAA//////////////////////////////////////////////////////////////////////5////8P////D////h///94f///MP///xD///8B////AB///wA///8Af///AP///wH///8D////B////w////8f////P////3////8="), auto;
+  }
+  a, button, .cursor-pointer {
+    cursor: url("data:application/octet-stream;base64,AAACAAEAICAAAAoACgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAB/gAAAf4AAAP/AAAD/wAAB/8AAAf/gAAP/4AAC/+AABv/gAA7/4AAM/2AAANtgAADbQAAA2wAAANgAAADAAAAAwAAAAMAAAADAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////AD///wA///8AP//+AB///gAf//wAH//8AA//+AAP//gAD//wAA//4AAP/+AAD//iAA///gAf//4AP//+AP///gf///4f///+H////h////4f////P//////////////////////////////////////////////////8="), auto;
+  }
+  ::selection {
+    background-color: var(--win9x-tangerine-yellow);
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                  CUSTOM BACKGROUND                  │
+    └─────────────────────────────────────────────────────┘*/
+  body.bg-background {
+    background-color: var(--win9x-teal);
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                      AVATARS                        │
+    └─────────────────────────────────────────────────────┘*/
+  .mask:has(img[src*="/avatar/"]) {
+    filter: var(--filter-outline);
+    padding: 2px;
+  }
+  a.mask.aspect-square.h-16.w-16[title^="@"],
+  div.mask.aspect-square.h-16.w-16 {
+    grid-column: 1/span 1;
+    grid-row: 2/span 1;
+  }
+  a.mask.aspect-square.h-16.w-16[title^="@"] > img,
+  div.mask.aspect-square.h-16.w-16 > img {
+    width: 58px;
+    height: 58px;
+    margin: 6px 3px;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > span.hidden:first-child {
+    display: none;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:last-child {
+    position: relative;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    max-width: 64px;
+    align-items: center;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:last-child > svg {
+    filter: var(--filter-outline);
+    margin-bottom: 4px;
+    padding: 0 0 0 0;
+    width: 32px;
+    height: 32px;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:last-child:after {
+    content: "Older Posts";
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: var(--win9x-gray);
+    border: 1px dotted var(--win9x-black);
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:nth-child(2) {
+    position: relative;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    max-width: 64px;
+    align-items: center;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:nth-child(2) > svg {
+    filter: var(--filter-outline);
+    margin-bottom: 4px;
+    padding: 0 0 0 0;
+    width: 32px;
+    height: 32px;
+  }
+  #app main section:not(.text-sidebarText) > div > div:last-child > a:nth-child(2):after {
+    content: "Newer Posts";
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: var(--win9x-gray);
+    border: 1px dotted var(--win9x-black);
+  }
+  #app > div > header nav > div:nth-child(2) {
+    position: fixed;
+    top: 40px;
+    right: 78px;
+    bottom: auto;
+    left: auto;
+  }
+  #app > div > header nav > div:nth-child(2) > a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: none;
+  }
+  #app > div > header nav > div:nth-child(2) > a:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-post.png");
+    background-repeat: no-repeat;
+  }
+  #app > div > header nav > div:nth-child(2) > a > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app > div > header nav > div:nth-child(2) > a > svg > * {
+    display: none;
+  }
+  #app > div > header nav > div:nth-child(2) > a > span {
+    margin-top: 28px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: var(--win9x-gray);
+    border: 1px dotted var(--win9x-black);
+  }
+  #app main > div:last-child div.fixed {
+    position: relative;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    max-width: 64px;
+    align-items: center;
+    top: auto;
+    right: 8px;
+    bottom: 8px;
+    left: auto;
+    position: fixed;
+  }
+  #app main > div:last-child div.fixed:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-wordpad.png");
+    background-repeat: no-repeat;
+  }
+  #app main > div:last-child div.fixed > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app main > div:last-child div.fixed > svg > * {
+    display: none;
+  }
+  #app main > div:last-child div.fixed > svg {
+    filter: var(--filter-outline);
+    margin-bottom: 4px;
+    padding: 0 0 0 0;
+    width: 32px;
+    height: 32px;
+  }
+  #app main > div:last-child div.fixed:after {
+    content: "Quick Post";
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: var(--win9x-gray);
+    border: 1px dotted var(--win9x-black);
+  }
+  form[action="https://cohost.org/rc/logout"] {
+    position: fixed;
+    top: 40px;
+    right: 8px;
+    bottom: auto;
+    left: auto;
+  }
+  form[action="https://cohost.org/rc/logout"] > button {
+    display: flex;
+    flex-direction: column;
+  }
+  form[action="https://cohost.org/rc/logout"] > button:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-shutdown.png");
+    background-repeat: no-repeat;
+  }
+  form[action="https://cohost.org/rc/logout"] > button > svg {
+    width: 32px;
+    height: 32px;
+  }
+  form[action="https://cohost.org/rc/logout"] > button > svg > * {
+    display: none;
+  }
+  form[action="https://cohost.org/rc/logout"] > button, form[action="https://cohost.org/rc/logout"] > button:hover {
+    background: none;
+    border: none;
+  }
+  form[action="https://cohost.org/rc/logout"] > button > span {
+    margin-top: 28px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: var(--win9x-gray);
+    border: 1px dotted var(--win9x-black);
+  }
+  #app > div > header {
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    background-color: var(--win9x-lightgray);
+  }
+  #app > div > header a[href="https://cohost.org/"] {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 56px;
+    position: fixed;
+    top: 2px;
+  }
+  #app > div > header a[href="https://cohost.org/"]:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app > div > header a[href="https://cohost.org/"], #app > div > header a[href="https://cohost.org/"] > svg {
+    height: 24px;
+  }
+  #app > div > header a[href="https://cohost.org/"] > svg {
+    padding: 4px;
+    color: var(--win9x-black);
+  }
+  #app > div > header a[href="https://cohost.org/"] > svg > path:first-child {
+    fill: var(--cohost-purple);
+  }
+  #app > div > header ~ div {
+    margin-top: 32px;
+  }
+  #app > div > header nav > form > button:active, #app > div > header nav > a:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app > div > header nav > div:first-child > button {
+    width: var(--taskbar-item-width);
+    height: 28px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+  }
+  #app > div > header nav > div:first-child > button > div {
+    padding: 0;
+    background: none;
+  }
+  #app > div > header nav > div:first-child > button img {
+    width: 20px;
+    height: 20px;
+    margin-top: 7px;
+    margin-left: 4px;
+  }
+  #app > div > header nav > div:first-child > button svg {
+    fill: var(--win9x-black);
+  }
+  #app > div > header nav > div:first-child > ul {
+    top: 8px;
+    right: 4px;
+    bottom: auto;
+    left: auto;
+    z-index: 10;
+    border-radius: 0px;
+    box-shadow: var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+  }
+  #app > div > header nav > div:first-child > ul > li {
+    border-radius: 0px;
+    padding: 0px 4px;
+    margin: 3px 4px;
+  }
+  #app > div > header nav > div:first-child > ul > li:hover {
+    background-color: var(--cohost-purple);
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                      TIMELINES                      │
+    └─────────────────────────────────────────────────────┘*/
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child {
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: -6px;
+    position: fixed;
+    z-index: 10;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row {
+    background: none;
+    border-radius: 0;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li {
+    width: var(--taskbar-item-width);
+    height: 28px;
+    margin-top: 1px;
+    border-radius: 0;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: left;
+    line-height: 12px;
+    text-transform: capitalize;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li.bg-foreground {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li.bg-foreground-800 {
+    margin-left: 2px;
+    box-shadow: var(--win9x-border-outset);
+    background: none;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li:first-child {
+    padding-left: 28px;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li:first-child:before {
+    content: " ";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: -20px;
+    margin-top: -2px;
+    margin-right: 8px;
+    background-image: url("https://shadenexus.com/img/win9x-users.png");
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li:last-child {
+    padding-left: 28px;
+  }
+  #app main section:not(.text-sidebarText) > div.flex-row:first-child > ul.flex-row > li:last-child:before {
+    content: " ";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: -20px;
+    margin-top: -2px;
+    margin-right: 8px;
+    background-image: url("https://shadenexus.com/img/win9x-usercal.png");
+  }
+  section.text-sidebarText,
+  #app > div > header + div > div > div.prose {
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    position: relative;
+  }
+  section.text-sidebarText p:first-letter,
+  #app > div > header + div > div > div.prose p:first-letter {
+    text-transform: capitalize;
+  }
+  section.text-sidebarText p, section.text-sidebarText div,
+  #app > div > header + div > div > div.prose p,
+  #app > div > header + div > div > div.prose div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  section.text-sidebarText > div:first-child,
+  #app > div > header + div > div > div.prose > div:first-child {
+    display: none;
+  }
+  section.text-sidebarText a, section.text-sidebarText h1 + time, section.text-sidebarText strong,
+  #app > div > header + div > div > div.prose a,
+  #app > div > header + div > div > div.prose h1 + time,
+  #app > div > header + div > div > div.prose strong {
+    color: var(--cohost-purple);
+  }
+  section.text-sidebarText code,
+  #app > div > header + div > div > div.prose code {
+    color: var(--win9x-blue);
+  }
+  section.text-sidebarText h2,
+  #app > div > header + div > div > div.prose h2 {
+    font-size: 1em;
+  }
+  section.text-sidebarText, section.text-sidebarText p, section.text-sidebarText ul,
+  #app > div > header + div > div > div.prose,
+  #app > div > header + div > div > div.prose p,
+  #app > div > header + div > div > div.prose ul {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  section.text-sidebarText > *:last-child:after,
+  #app > div > header + div > div > div.prose > *:last-child:after {
+    content: "↓ clippybug by @lifning";
+    font-size: 8pt;
+    color: var(--win9x-darkgray);
+    float: right;
+  }
+  section.text-sidebarText:after,
+  #app > div > header + div > div > div.prose:after {
+    content: " ";
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: -9px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  section.text-sidebarText:before,
+  #app > div > header + div > div > div.prose:before {
+    content: " ";
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    top: auto;
+    right: auto;
+    bottom: -134px;
+    left: 30%;
+    background-image: url("https://staging.cohostcdn.org/attachment/e4623dff-6c49-4f46-b2ac-3369a24393fe/cohost-clippy.png");
+    background-repeat: no-repeat;
+    background-size: 128px, 128px;
+  }
+  #app > div > header nav > form > select, #app > div > header nav > form > button, #app > div > header nav > a, #app > div > header nav > a:hover {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app main > div > ul, #app main > div > ul select, #app main > div:last-child > div::after {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                  LEFT MENU                          |
+    └─────────────────────────────────────────────────────┘*/
+  @media (min-width: 1024px) {
+    #app ul[id^=headlessui-menu-items] {
+      top: 32px;
+      right: auto;
+      bottom: auto;
+      left: 0px;
+      position: fixed;
+      padding: 2px 4px 12px 48px;
+      row-gap: 0px;
+      background: linear-gradient(185deg, var(--win9x-darkgray), var(--win9x-gray)), var(--win9x-lightgray);
+      border-radius: 0;
+      box-shadow: var(--win9x-border-outset);
+      color: var(--win9x-black);
+    }
+    #app ul[id^=headlessui-menu-items]:hover {
+      background: linear-gradient(185deg, var(--cohost-purple), rgb(181, 87, 129)), var(--win9x-lightgray);
+    }
+    #app ul[id^=headlessui-menu-items], #app ul[id^=headlessui-menu-items]:hover {
+      background-size: 48px calc(100% - 3px), 100% 100%;
+      background-repeat: no-repeat, repeat;
+    }
+    #app ul[id^=headlessui-menu-items]:before {
+      top: 8px;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      position: absolute;
+      content: "𝗖𝗼𝗵𝗼𝘀𝘁 97";
+      writing-mode: vertical-lr;
+      font-size: 2.5em;
+      color: var(--win9x-white);
+    }
+    #app ul[id^=headlessui-menu-items] li:hover, #app ul[id^=headlessui-menu-items] li {
+      padding: 8px 16px 8px 6px;
+      height: 32px;
+      margin: 0;
+      border: none;
+    }
+    #app ul[id^=headlessui-menu-items] > a {
+      margin: 1px 0;
+      height: 32px;
+    }
+    #app ul[id^=headlessui-menu-items] > a:nth-child(2) ~ ul {
+      margin-top: 0px;
+    }
+    #app ul[id^=headlessui-menu-items] li:hover {
+      color: var(--win9x-white);
+      background-color: var(--cohost-purple);
+      border-radius: 0;
+    }
+    #app ul[id^=headlessui-menu-items] > a[href="https://cohost.org/rc/project/notifications"] svg ~ svg > path {
+      fill: var(--win9x-office-comment);
+      stroke: var(--win9x-black);
+    }
+    #app ul[id^=headlessui-menu-items] > a[href="https://cohost.org/rc/project/notifications"] svg ~ svg > text {
+      fill: var(--win9x-black);
+    }
+  }
+  main {
+    background: var(--wallpaper480) fixed center;
+    background-size: cover;
+  }
+  @media (max-height: 720px) {
+    main {
+      background-image: var(--wallpaper720);
+    }
+  }
+  @media (min-height: 721px) and (max-height: 1080px) {
+    main {
+      background-image: var(--wallpaper1080);
+    }
+  }
+  @media (min-height: 1081px) and (max-height: 1500px) {
+    main {
+      background-image: var(--wallpaper1500);
+    }
+  }
+  @media (min-height: 1501px) {
+    main {
+      background-image: var(--wallpaperMax);
+    }
+  } /* --- Window dressings --- */
+  #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg {
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    position: relative;
+    margin-top: -4em;
+  }
+  #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg p:first-letter {
+    text-transform: capitalize;
+  }
+  #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg p, #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg:after {
+    content: " ";
+    position: absolute;
+    top: -8px;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  #app main > div {
+    position: relative;
+  }
+  #app main > div:before {
+    content: " ";
+  }
+  #app div[data-view=post-preview] {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+    grid-template-rows: 48px 1fr;
+    column-gap: 6px;
+    row-gap: 0px;
+  }
+  #app div[data-view=post-preview] > article > *,
+  #app div[data-view=post-preview] > article ~ div {
+    grid-column: 1/span 2;
+  }
+  #app div[data-view=post-preview] > a + article > div {
+    grid-column: 2/span 1;
+  }
+  #app div[data-view=post-preview] > article {
+    display: contents;
+    position: relative;
+    box-shadow: none;
+    background: none;
+  }
+  #app div[data-view=post-preview] > article:hover > header {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app div[data-view=post-preview] > article > header {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #app div[data-view=post-preview] > article > header, #app div[data-view=post-preview] > article > footer, #app div[data-view=post-preview] > article {
+    border-radius: 0;
+  }
+  #app div[data-view=post-preview] > article > header a {
+    color: var(--win9x-white);
+    font: 0.9em var(--font-primary);
+  }
+  #app div[data-view=post-preview] > article > header a[rel=author] {
+    max-width: 400px;
+    font-weight: bold;
+  }
+  #app div[data-view=post-preview] > article > div {
+    /* Actual post contents */
+    box-shadow: inset -1px 0px var(--win9x-darkwhite), inset 1px 0px var(--win9x-black);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    margin-right: 2px;
+    padding: 1px;
+    background: var(--win9x-white);
+    /* --- POST CONTENT WARNINGS --- */
+  }
+  #app div[data-view=post-preview] > article > div:first-of-type {
+    margin-top: 4px;
+    border-top: 1px solid var(--win9x-darkgray);
+    box-shadow: inset -1px 0px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+  }
+  #app div[data-view=post-preview] > article > div:last-of-type {
+    border-bottom: 1px inset var(--win9x-white);
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 0px var(--win9x-black);
+  }
+  #app div[data-view=post-preview] > article > div:only-of-type {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry {
+    position: relative;
+    background-color: var(--win9x-office-comment);
+    border-color: var(--win9x-black);
+    border-width: 1px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-restrict.png");
+    background-repeat: no-repeat;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300 > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300 > svg > * {
+    display: none;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-warn.png");
+    background-repeat: no-repeat;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300 > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300 > svg > * {
+    display: none;
+  }
+  #app div[data-view=post-preview] > article > div div.break-words {
+    overflow-wrap: anywhere;
+  }
+  #app div[data-view=post-preview] > article > hr {
+    display: none;
+  }
+  #app div[data-view=post-preview] > article > footer, #app div[data-view=post-preview] > article > footer > div > div {
+    background: none;
+  }
+  #app div[data-view=post-preview] > article > footer a {
+    color: var(--win9x-black);
+  }
+  #app div[data-view=post-preview] > article > footer a[title^=share], #app div[data-view=post-preview] > article > footer a[title^=edit], #app div[data-view=post-preview] > article > footer button {
+    box-shadow: var(--win9x-border-outset);
+  }
+  #app div[data-view=post-preview] > article > footer a[title^=share] {
+    padding: 2px 16px;
+  }
+  #app div[data-view=post-preview] > article > footer a[title^=edit] {
+    width: 56px;
+    height: 1.7em;
+  }
+  #app div[data-view=post-preview] > article > footer a[title^=edit] svg {
+    width: 24px;
+    margin-left: 16px;
+    margin-top: 2px;
+  }
+  #app div[data-view=post-preview] > article > footer button {
+    position: relative;
+    width: 56px;
+    height: 1.7em;
+  }
+  #app div[data-view=post-preview] > article > footer button[title^=unlike]:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-mshearts.png");
+    background-repeat: no-repeat;
+  }
+  #app div[data-view=post-preview] > article > footer button[title^=unlike] > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app div[data-view=post-preview] > article > footer button[title^=unlike] > svg > * {
+    display: none;
+  }
+  #app div[data-view=post-preview] > article > footer button[title^=unlike]:before {
+    top: 2px;
+    margin-left: -12px;
+    background-size: 24px 24px;
+  }
+  #app div[data-view=post-preview] > article > footer button > svg {
+    margin: 1px 16px;
+  }
+  #app main section > div {
+    border-radius: 0;
+  }
+  #app div[data-view=post-preview] > article > header time,
+  #app div[data-view=post-preview] > article > header svg,
+  [id^=headlessui-menu-button] > svg {
+    color: var(--win9x-white);
+    font: 0.9em var(--font-primary) !important;
+  }
+}
+@-moz-document url("https://cohost.org/rc/project/notifications") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                    NOTIFICATIONS                    │
+    └─────────────────────────────────────────────────────┘*/
+  #app main section > div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+  }
+  #app main section > div > div {
+    border-radius: 0;
+  }
+  #app main section > div > div:first-child {
+    justify-content: flex-start;
+  }
+  #app main section > div > div:first-child:before {
+    content: "Notifications -";
+    padding-right: 0.2em;
+  }
+  #app main section > div > div:first-child:before, #app main section > div > div:first-child > time, #app main section > div > div:first-child {
+    color: var(--win9x-white);
+    font: bold 0.9em var(--font-primary);
+    text-transform: capitalize;
+  }
+  #app main section > div > div:nth-child(n+2) {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    font-size: 10pt;
+  }
+  #app main section > div > div:nth-child(n+2):hover {
+    background: var(--win9x-white);
+    padding: 6px;
+    margin: 6px 5px 5px 5px;
+    border: 1px dotted var(--win9x-gray);
+    outline: 5px solid var(--win9x-white);
+  }
+  #app main section > div > div button[aria-expanded] > svg > path {
+    fill: var(--win9x-black);
+  }
+  #app main section > div > div > p {
+    position: relative;
+    margin-top: 8px;
+    padding: 4px 8px;
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app main section > div > div > p p:first-letter {
+    text-transform: capitalize;
+  }
+  #app main section > div > div > p p, #app main section > div > div > p div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app main section > div > div > p:before {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    transform: rotate(-135deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  #app main section > div > div img[src^="https://staging.cohostcdn.org/attachment/"] {
+    box-shadow: none;
+    outline: 1px solid var(--win9x-black);
+    border-radius: 0px;
+  }
+  #app main section > div:hover > div:first-child {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app main section > div > div:first-child {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+}
+@-moz-document regexp("https?://cohost.org/rc/search(\\?q=.*)?") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                    SEARCH PAGE                      │
+    └─────────────────────────────────────────────────────┘*/
+  #app main section > div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+    margin-bottom: 16em;
+  }
+  #app main section > div:hover h1 {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app main section > div h1 {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #app main section > div h1 {
+    justify-content: flex-start;
+    font: bold 12pt var(--font-primary);
+    text-transform: capitalize;
+    color: var(--win9x-white);
+    letter-spacing: inherit;
+    padding: 6px;
+    border-radius: 0;
+  }
+  #app main section > div h2 {
+    font-family: var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.2em;
+  }
+  #app main section > div h2 > a {
+    color: var(--cohost-purple);
+  }
+  #app main section > div h2:first-letter {
+    text-transform: capitalize;
+  }
+  #app main section > div input {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    height: 24px;
+    font-family: var(--font-primary);
+    font-size: 13px;
+  }
+  #app main section > div, #app main section > div input {
+    padding: 4px;
+  }
+  #app main section > div p.h5 {
+    position: relative;
+    padding: 4px;
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app main section > div p.h5 p:first-letter {
+    text-transform: capitalize;
+  }
+  #app main section > div p.h5 p, #app main section > div p.h5 div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app main section > div p.h5:before {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 10%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+}
+@-moz-document regexp("https?://cohost.org/.+") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                    PROFILE PAGES                    │
+    └─────────────────────────────────────────────────────┘*/
+  /*┌─────────────────────────────────────────────────────┐
+    │                      AVATARS                        │
+    └─────────────────────────────────────────────────────┘*/
+  .mask:has(img[src*="/avatar/"]) {
+    filter: var(--filter-outline);
+    padding: 2px;
+  }
+  a.mask.aspect-square.h-16.w-16[title^="@"],
+  div.mask.aspect-square.h-16.w-16 {
+    grid-column: 1/span 1;
+    grid-row: 2/span 1;
+  }
+  a.mask.aspect-square.h-16.w-16[title^="@"] > img,
+  div.mask.aspect-square.h-16.w-16 > img {
+    width: 58px;
+    height: 58px;
+    margin: 6px 3px;
+  }
+  #app img[src*=header][src*=profile] {
+    position: fixed;
+    object-fit: cover;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                  PROFILE SUMMARY                    │
+    └─────────────────────────────────────────────────────┘*/
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    margin-top: 4em;
+    padding: 0px 4px 1rem 4px;
+    grid-column: 1/1;
+    align-self: start;
+    background: var(--win9x-lightgray);
+    border-radius: 0;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a), #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h1, #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h2, #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h3 {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) button[id^=headlessui-menu-button] {
+    top: -12px;
+    right: -4px;
+    bottom: auto;
+    left: auto;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) a, #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) ul svg {
+    color: var(--win9x-darkblue);
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a):hover h1 {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h1 {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h1 {
+    top: -12px;
+    right: 0px;
+    bottom: auto;
+    left: 0px;
+    position: absolute;
+    height: 24px;
+    padding-left: 0.5em;
+    z-index: -1;
+    font-size: 12pt;
+    text-align: left;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) h1 a {
+    color: var(--win9x-white);
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) a[href^="https://cohost.org/rc/project/"],
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) button.align-middle {
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    font-size: 10pt;
+    font-weight: normal;
+    color: var(--win9x-black);
+    background: none;
+    box-shadow: var(--win9x-border-outset);
+    border: none;
+    border-radius: 0;
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) a[href^="https://cohost.org/rc/project/"]:active,
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) button.align-middle:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) div.mask:has(img[src*=avatar][src*=profile]) {
+    margin-top: 3em;
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                     PINNED TAGS                     │
+    └─────────────────────────────────────────────────────┘*/
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) {
+    margin-top: 5rem;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) div.uppercase {
+    text-transform: capitalize;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) div.uppercase + ul {
+    border-top: none;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: var(--win9x-lightgray);
+    border-radius: 0;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div:hover > div:first-child {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div > div:first-child {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div > div {
+    border: none;
+  }
+  #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div > div:first-child {
+    margin: 3px;
+    border-radius: 0px;
+    color: var(--win9x-white);
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                     THE REST                        │
+    └─────────────────────────────────────────────────────┘*/
+  #app > div > header + div > div.container > div.grid > div {
+    z-index: 10;
+  }
+}
+@-moz-document regexp("https?://cohost.org/.+/post/.*") {
+  textarea[placeholder="add note"] {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background-color: white;
+    border-radius: 0;
+  }
+  /*┌─────────────────────────────────────────────────────┐
+    │                COMMENTS SECTIONS                    │
+    └─────────────────────────────────────────────────────┘*/
+  #app div[data-view=post-preview] > article + div, #app div[data-view=post-preview] > article ~ div > div {
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  #app div[data-view=post-preview] > article + div textarea {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    padding: 4px 8px;
+  }
+  #app div[data-view=post-preview] > article + div button {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 48px;
+  }
+  #app div[data-view=post-preview] > article + div button:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app div[data-view=post-preview] > article ~ div > div a.mask {
+    filter: var(--filter-outline);
+  }
+  #app div[data-view=post-preview] > article ~ div > h4 {
+    font-family: var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: underline;
+  }
+  #app div[data-view=post-preview] > article ~ div > h4 > a {
+    color: var(--cohost-purple);
+  }
+  #app div[data-view=post-preview] > article ~ div > h4:first-letter {
+    text-transform: capitalize;
+  }
+  article[data-comment-id] {
+    box-shadow: 0px -1px inset var(--win9x-darkgray);
+    background-color: var(--win9x-office-comment);
+    border: 1px solid var(--win9x-black);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  article[data-comment-id] div.prose + div.flex-row > * {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 64px;
+    padding: 2px 4px;
+  }
+  article[data-comment-id] div.prose + div.flex-row > *:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  article[data-comment-id] div.prose + div.flex-row > * svg {
+    margin: 0 auto;
+    width: 24px;
+  }
+  article[data-comment-id] div.prose + div.flex-row > * svg * {
+    fill: var(--win9x-black);
+  }
+  article[data-comment-id] div.prose + div.flex-row > * > button {
+    width: 100%;
+    height: 100%;
+  }
+  article[data-comment-id] + div.border-l {
+    position: relative;
+    border-left: none;
+  }
+  article[data-comment-id] + div.border-l:after {
+    content: " ";
+    position: absolute;
+    top: -8px;
+    right: auto;
+    bottom: auto;
+    left: 32px;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+}
+@-moz-document regexp("https?://cohost.org/.+/tagged/.+") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                  BOOKMARKED TAGS                    │
+    └─────────────────────────────────────────────────────┘*/
+  h6.h6 {
+    width: var(--taskbar-item-width);
+    height: 28px;
+    margin-top: 1px;
+    border-radius: 0;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-align: left;
+    line-height: 12px;
+    top: 1px;
+    right: auto;
+    bottom: auto;
+    left: 76px;
+    position: fixed;
+    padding-top: 8px;
+    padding-left: 28px;
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    box-shadow: var(--win9x-border-outset);
+    background-color: var(--win9x-darkwhite);
+  }
+  h6.h6:before {
+    content: " ";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: -20px;
+    margin-top: -2px;
+    margin-right: 8px;
+    background-image: url("https://shadenexus.com/img/win9x-folder.png");
+  }
+  h6.h6 + button {
+    position: fixed;
+    top: 38px;
+    right: auto;
+    bottom: auto;
+    left: calc(76px + var(--taskbar-item-width));
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  h6.h6 + button p:first-letter {
+    text-transform: capitalize;
+  }
+  h6.h6 + button p, h6.h6 + button div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  h6.h6 + button:first-letter {
+    text-transform: capitalize;
+  }
+  h6.h6 + button:after {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 10%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  h6.h6 + button:hover, h6.h6 + button:hover:after {
+    background-color: var(--win9x-tangerine-yellow);
+  }
+}
+@-moz-document regexp("https?://cohost.org/\\w+/post/compose.*"),
+               regexp("https?://cohost.org/\\w+/post/.*/edit") {
+  #app div[data-view=post-preview] {
+    margin-top: 44pt;
+  }
+  #app > div > div {
+    background: linear-gradient(180deg, var(--win9x-blue), var(--win9x-darkblue));
+    background-size: 100% 100%;
+  }
+  #app > div h1.text-xl {
+    font: italic bold 32pt Arial, sans-serif;
+    text-shadow: 4px 4px 0 var(--win9x-black);
+    color: var(--win9x-white);
+    position: absolute;
+    left: 2vh;
+  }
+  #app header + div > .container > div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+    margin-bottom: 15px;
+  }
+  #app header + div > .container > div article, #app header + div > .container > div footer, #app header + div > .container > div header, #app header + div > .container > div header ~ hr {
+    box-shadow: none;
+    background: none;
+    border: none;
+  }
+  #app header + div > .container > div article + p {
+    position: relative;
+    padding: 4px;
+    border: 1px solid var(--win9x-black);
+    border-radius: 4px;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background-color: var(--win9x-office-comment);
+  }
+  #app header + div > .container > div article + p:before {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 15px;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  #app header + div > .container > div textarea[name=headline],
+  #app header + div > .container > div textarea[placeholder^="post body"],
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background: var(--win9x-white);
+    width: calc(100% - 4px);
+  }
+  #app header + div > .container > div textarea[name=headline] *,
+  #app header + div > .container > div textarea[placeholder^="post body"] *,
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700 *,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 * {
+    background: none;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p:first-letter,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p, #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute div,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute:after,
+  #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute:after {
+    content: " ";
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: -9px;
+    left: 10%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+}
+@-moz-document regexp("https://cohost.org/rc/project/follow(ing|ers)") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                  CUSTOM BACKGROUND                  │
+    └─────────────────────────────────────────────────────┘*/
+  body.bg-background {
+    background-color: var(--win9x-teal);
+  }
+  header + div {
+    background: var(--wallpaper480) fixed center;
+    background-size: cover;
+  }
+  @media (max-height: 720px) {
+    header + div {
+      background-image: var(--wallpaper720);
+    }
+  }
+  @media (min-height: 721px) and (max-height: 1080px) {
+    header + div {
+      background-image: var(--wallpaper1080);
+    }
+  }
+  @media (min-height: 1081px) and (max-height: 1500px) {
+    header + div {
+      background-image: var(--wallpaper1500);
+    }
+  }
+  @media (min-height: 1501px) {
+    header + div {
+      background-image: var(--wallpaperMax);
+    }
+  }
+  #root header + div > div:before {
+    content: " ";
+  }
+  #root header + div > div > div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+  }
+  #root header + div > div > div:hover h1 {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #root header + div > div > div h1 {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #root header + div > div > div > div {
+    gap: 0px;
+    margin-top: 0px;
+  }
+  #root header + div > div > div > div > div {
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--win9x-gray);
+  }
+  #root header + div > div > div > div > div > a {
+    padding: 0px;
+  }
+  #root header + div > div > div > div > div > a > img {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    top: 4px;
+    right: auto;
+    bottom: auto;
+    left: 4px;
+  }
+  #root header + div > div > div > div > div > div {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #root header + div > div > div > div > div > div > div {
+    gap: 0px;
+  }
+  #root header + div > div > div > div > div > button {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 36px;
+    border: none;
+    padding: 0px 8px;
+    margin-right: 4px;
+  }
+  #root header + div > div > div > div > div > button:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #root header + div > div > div > button {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 64px;
+    margin: 16px auto 4px auto;
+  }
+  #root header + div > div > div > button:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+}
+@-moz-document url("https://cohost.org/rc/posts/unpublished") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                    DRAFTS                           │
+    └─────────────────────────────────────────────────────┘*/
+  #app main section div.renderIfVisible {
+    background: var(--win9x-lightgray);
+    margin-bottom: 16em;
+  }
+}
+@-moz-document regexp("https://cohost.org/rc/user/settings") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                       SETTINGS                      │
+    └─────────────────────────────────────────────────────┘*/
+  #app header + div > div.container:before {
+    position: static;
+    content: " ";
+  }
+  #app header + div > div.container #password-email, #app header + div > div.container #password-email ~ div {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    border-radius: 0;
+    background: var(--win9x-lightgray);
+    padding: 4px;
+  }
+  #app header + div > div.container #password-email div.prose > p,
+  #app header + div > div.container #password-email p.prose, #app header + div > div.container #password-email ~ div div.prose > p,
+  #app header + div > div.container #password-email ~ div p.prose {
+    font-size: 12pt;
+    line-height: 14pt;
+    padding: 4px;
+  }
+  #app header + div > div.container #password-email div.prose > p:first-letter,
+  #app header + div > div.container #password-email p.prose:first-letter, #app header + div > div.container #password-email ~ div div.prose > p:first-letter,
+  #app header + div > div.container #password-email ~ div p.prose:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > div.container #password-email:hover h4, #app header + div > div.container #password-email ~ div:hover h4 {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #app header + div > div.container #password-email h4, #app header + div > div.container #password-email ~ div h4 {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #app header + div > div.container #password-email div, #app header + div > div.container #password-email ~ div div {
+    row-gap: 0px;
+  }
+  #app header + div > div.container #password-email h4, #app header + div > div.container #password-email label, #app header + div > div.container #password-email ~ div h4, #app header + div > div.container #password-email ~ div label {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app header + div > div.container #password-email h4:first-letter, #app header + div > div.container #password-email label:first-letter, #app header + div > div.container #password-email ~ div h4:first-letter, #app header + div > div.container #password-email ~ div label:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > div.container #password-email h4, #app header + div > div.container #password-email ~ div h4 {
+    color: var(--win9x-white);
+    line-height: 32px;
+  }
+  #app header + div > div.container #password-email h5, #app header + div > div.container #password-email ~ div h5 {
+    font-family: var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 14pt;
+  }
+  #app header + div > div.container #password-email h5 > a, #app header + div > div.container #password-email ~ div h5 > a {
+    color: var(--cohost-purple);
+  }
+  #app header + div > div.container #password-email h5:first-letter, #app header + div > div.container #password-email ~ div h5:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > div.container #password-email h6, #app header + div > div.container #password-email ~ div h6 {
+    font-family: var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 12pt;
+    text-decoration: none;
+  }
+  #app header + div > div.container #password-email h6 > a, #app header + div > div.container #password-email ~ div h6 > a {
+    color: var(--cohost-purple);
+  }
+  #app header + div > div.container #password-email h6:first-letter, #app header + div > div.container #password-email ~ div h6:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > div.container #password-email input, #app header + div > div.container #password-email ~ div input {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background-color: white;
+    border-radius: 0;
+  }
+  #app header + div > div.container #password-email input[type=checkbox], #app header + div > div.container #password-email ~ div input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+  }
+  #app header + div > div.container #password-email input[type=checkbox]:checked:after, #app header + div > div.container #password-email ~ div input[type=checkbox]:checked:after {
+    padding-left: 2px;
+    content: "✓";
+    vertical-align: top;
+    color: black;
+    font-weight: bold;
+    font-size: 8pt;
+  }
+  #app header + div > div.container #password-email button, #app header + div > div.container #password-email ~ div button {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    margin: 2px 0px 2px 4px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    font-size: 10pt;
+    min-width: 48px;
+  }
+  #app header + div > div.container #password-email button:active, #app header + div > div.container #password-email ~ div button:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div), #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div) {
+    margin-top: 8px;
+    position: relative;
+    border: 1px solid var(--win9x-black);
+    background-color: var(--win9x-office-comment);
+    border-radius: 4px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div) p:first-letter, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div) p:first-letter {
+    text-transform: capitalize;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div) p, #app header + div > div.container #password-email div.rounded-lg:has(svg + div) div, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div) p, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div) div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div):after, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div):after {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 25%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-mango-100:before, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-mango-100:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-info.png");
+    background-repeat: no-repeat;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-mango-100 > svg, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-mango-100 > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-mango-100 > svg > *, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-mango-100 > svg > * {
+    display: none;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-strawberry-100:before, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-strawberry-100:before {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("https://shadenexus.com/img/win9x-warn.png");
+    background-repeat: no-repeat;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-strawberry-100 > svg, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-strawberry-100 > svg {
+    width: 32px;
+    height: 32px;
+  }
+  #app header + div > div.container #password-email div.rounded-lg:has(svg + div).bg-strawberry-100 > svg > *, #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div).bg-strawberry-100 > svg > * {
+    display: none;
+  }
+}
+@-moz-document domain("cohost.org") {
+  /*┌─────────────────────────────────────────────────────┐
+    │                   ADDON - DEDUP                     │
+    └─────────────────────────────────────────────────────┘*/
+  #app article > div.-cohost-dedup-hidden-chost {
+    opacity: 25%;
+    filter: grayscale(100%);
+    max-height: 128px;
+    margin-bottom: 0;
+  }
+  #app article > div.-cohost-dedup-hidden-chost div[data-post-body=true] {
+    max-height: 32px;
+    overflow-y: hidden;
+  }
+  #app article > a.-cohost-dedup-link {
+    width: calc(100% - 32px);
+    height: 128px;
+    position: absolute;
+    padding-top: 0;
+    margin-bottom: 0;
+    margin-top: 52px;
+    margin-left: 32px;
+    background: url("https://shadenexus.com/img/win9x-recycle.png");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    background-position: center center;
+    color: rgba(255, 255, 255, 0);
+  }
+}
+@-moz-document domain("cohost.org") {
+  /*┌─────────────────────────────────────────────────────┐
+    │               ADDON - PROFILE POPUP                 │
+    └─────────────────────────────────────────────────────┘*/
+  #osmose-popup {
+    box-shadow: 6px 6px var(--win9x-black-shadow), 1px 1px var(--win9x-black), -1px -1px var(--win9x-white);
+  }
+}
+
+/*# sourceMappingURL=cohost97.user.css.map */

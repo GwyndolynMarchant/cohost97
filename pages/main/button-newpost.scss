@@ -1,0 +1,17 @@
+#app > div > header nav > div:nth-child(2) {
+    position:   fixed;
+    @include    offset(40px, 78px, auto, auto);
+
+    > a {
+        @include        replace-icon-svg("https://shadenexus.com/img/win9x-post.png");
+        position:       relative;
+        display:        flex;
+        flex-direction: column;
+        background:     none;
+
+        > span {
+            margin-top: 28px;
+            @include    win9x-icon-label;
+        }
+    }
+}

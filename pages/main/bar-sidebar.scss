@@ -1,0 +1,35 @@
+section.text-sidebarText,
+#app > div > header+div > div > div.prose {
+    @include    win9x-office-comment;
+    position:   relative;
+
+    > div:first-child    { display:     none;                 }
+    a, h1 + time, strong { color:       var(--cohost-purple); }
+    code                 { color:       var(--win9x-blue);    }
+    h2                   { font-size:   1em;                  }
+    &, p, ul,            { @include     win9x-default-font;   }
+
+    > *:last-child:after {
+        content:    "↓ clippybug by @lifning";
+        font-size:  8pt;
+        color:      var(--win9x-darkgray);
+        float:      right;
+    }
+
+    @include bubble-arrow(after, auto, auto, -9px, 50%, 45deg);
+
+    &:before {
+        @include pseudo-element;
+        @include size(128px, 128px);
+        @include offset(auto, auto, -134px, 30%);
+        
+        background-image:   url("https://staging.cohostcdn.org/attachment/e4623dff-6c49-4f46-b2ac-3369a24393fe/cohost-clippy.png");
+        background-repeat:  no-repeat;
+        background-size:    128px, 128px;
+    }
+}
+
+#app {
+    > div > header nav { > form > select, > form > button, > a, > a:hover { @include win9x-default-font; } }
+    main > div         { > ul, > ul select, &:last-child > div::after     { @include win9x-default-font; } }
+}
