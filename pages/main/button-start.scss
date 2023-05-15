@@ -1,0 +1,13 @@
+a[href="https://cohost.org/"] {
+    @include    win9x-button(56px);
+    @include    offset(2px, auto, auto, 2px);
+    position:   fixed;
+
+    &, > svg { height: 24px; }
+    > svg {
+        padding:    4px;
+        color:      var(--win9x-black);
+
+        > path:first-child { fill: var(--cohost-purple); }
+    }
+}

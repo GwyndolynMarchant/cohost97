@@ -100,9 +100,9 @@
   #app main section:not(.text-sidebarText) > div > div:last-child > a:last-child {
     position: relative;
     margin-bottom: 16px;
+    max-width: 64px;
     display: flex;
     flex-direction: column;
-    max-width: 64px;
     align-items: center;
   }
   #app main section:not(.text-sidebarText) > div > div:last-child > a:last-child > svg {
@@ -125,9 +125,9 @@
   #app main section:not(.text-sidebarText) > div > div:last-child > a:nth-child(2) {
     position: relative;
     margin-bottom: 16px;
+    max-width: 64px;
     display: flex;
     flex-direction: column;
-    max-width: 64px;
     align-items: center;
   }
   #app main section:not(.text-sidebarText) > div > div:last-child > a:nth-child(2) > svg {
@@ -188,9 +188,9 @@
   #app main > div:last-child div.fixed {
     position: relative;
     margin-bottom: 16px;
+    max-width: 64px;
     display: flex;
     flex-direction: column;
-    max-width: 64px;
     align-items: center;
     top: auto;
     right: 8px;
@@ -279,17 +279,20 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 56px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 56px;
-    position: fixed;
+    background: none;
     top: 2px;
+    right: auto;
+    bottom: auto;
+    left: 2px;
+    position: fixed;
   }
   #app > div > header a[href="https://cohost.org/"]:active {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
@@ -432,8 +435,8 @@
   section.text-sidebarText,
   #app > div > header + div > div > div.prose {
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -609,8 +612,8 @@
   } /* --- Window dressings --- */
   #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg {
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -812,6 +815,47 @@
     color: var(--win9x-white);
     font: 0.9em var(--font-primary) !important;
   }
+  #app div[data-view=post-collapsed] > div:first-child {
+    background: url("https://shadenexus.com/img/win9x-agent.png");
+    background-repeat: no-repeat;
+    width: 56px;
+    height: 56px;
+    margin: 12px 0 0 12px;
+  }
+  #app div[data-view=post-collapsed] > div:last-child {
+    position: relative;
+    border: 1px solid var(--win9x-black);
+    border-radius: 4px;
+    background-color: var(--win9x-office-comment);
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  #app div[data-view=post-collapsed] > div:last-child p:first-letter {
+    text-transform: capitalize;
+  }
+  #app div[data-view=post-collapsed] > div:last-child p, #app div[data-view=post-collapsed] > div:last-child div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  #app div[data-view=post-collapsed] > div:last-child:before {
+    content: " ";
+    position: absolute;
+    top: 2em;
+    right: auto;
+    bottom: auto;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    transform: rotate(135deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  #app div[data-view=post-collapsed] > div:last-child > article {
+    background: none;
+  }
 }
 @-moz-document url("https://cohost.org/rc/project/notifications") {
   /*┌─────────────────────────────────────────────────────┐
@@ -859,8 +903,8 @@
     margin-top: 8px;
     padding: 4px 8px;
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -962,8 +1006,8 @@
     position: relative;
     padding: 4px;
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -1175,15 +1219,15 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 48px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 48px;
+    background: none;
   }
   #app div[data-view=post-preview] > article + div button:active {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
@@ -1222,15 +1266,15 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 64px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 64px;
+    background: none;
     padding: 2px 4px;
   }
   article[data-comment-id] div.prose + div.flex-row > *:active {
@@ -1318,8 +1362,8 @@
     bottom: auto;
     left: calc(76px + var(--taskbar-item-width));
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -1432,8 +1476,8 @@
   #app header + div > .container > div div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
   #app header + div > .container > div div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -1546,15 +1590,15 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 36px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 36px;
+    background: none;
     border: none;
     padding: 0px 8px;
     margin-right: 4px;
@@ -1571,15 +1615,15 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 64px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 64px;
+    background: none;
     margin: 16px auto 4px auto;
   }
   #root header + div > div > div > button:active {
@@ -1711,15 +1755,15 @@
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
-    background: none;
     text-transform: capitalize;
     font-weight: normal;
+    font-size: 10pt;
     margin: 2px 0px 2px 4px;
+    min-width: 48px;
     height: 32px;
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
-    font-size: 10pt;
-    min-width: 48px;
+    background: none;
   }
   #app header + div > div.container #password-email button:active, #app header + div > div.container #password-email ~ div button:active {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
@@ -1733,8 +1777,8 @@
     margin-top: 8px;
     position: relative;
     border: 1px solid var(--win9x-black);
-    background-color: var(--win9x-office-comment);
     border-radius: 4px;
+    background-color: var(--win9x-office-comment);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;

@@ -150,4 +150,24 @@
         color:  var(--win9x-white);
         font:   0.9em var(--font-primary) !important;
     }
+
+    // Hidden posts
+    #app div[data-view="post-collapsed"] > div {
+        &:first-child {
+            background: url("https://shadenexus.com/img/win9x-agent.png");
+            background-repeat: no-repeat;
+            @include size(56px, 56px);
+            margin: 12px 0 0 12px;
+        }
+
+        &:last-child { 
+            position: relative;
+            @include win9x-office-comment;
+            @include bubble-arrow(before, 2em, auto, auto, -8px, 135deg);
+
+            > article {
+                background: none;
+            }
+        }
+    }
 }

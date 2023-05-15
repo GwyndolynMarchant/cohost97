@@ -6,7 +6,7 @@ A new userstyle, based on my themes [Mastodon97](https://github.com/GwyndolynMar
 
 You can use a manager like **Stylus**, which is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/) and [Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne).
 
-Then click to [install](https://github.com/GwyndolynMarchant/cohost97/raw/main/cohost97.user.css).
+Then click to install: [Link](https://github.com/GwyndolynMarchant/cohost97/raw/main/cohost97.user.css).
 
 
 ## Changelog
