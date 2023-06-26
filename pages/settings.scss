@@ -1,4 +1,4 @@
-@-moz-document regexp("https://cohost.org/rc/user/settings") {
+@-moz-document url("https://cohost.org/rc/user/settings") {
     /*┌─────────────────────────────────────────────────────┐
       │                       SETTINGS                      │
       └─────────────────────────────────────────────────────┘*/   
@@ -60,7 +60,10 @@
     			}
     		}
 
-    		button { @include win9x-button(48px); }
+    		button { 
+                &.border-foreground { border: none; }
+                @include win9x-button(48px);
+            }
 
     		div.rounded-lg:has(svg+div) {
     			margin-top:  8px;

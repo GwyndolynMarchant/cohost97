@@ -24,6 +24,7 @@
     --win9x-black-raw: 10, 10, 10;
     --win9x-black: rgb(var(--win9x-black-raw));
     --win9x-black-shadow: rgba(var(--win9x-black-raw), var(--shadowOpacity));
+    --contrast-shadow: rgba(var(--win9x-black-raw), 0.1);
     --win9x-darkgray: #808080;
     --win9x-gray: #a0a0a4;
     --win9x-lightgray: #c0c0c0;
@@ -94,6 +95,111 @@
     height: 58px;
     margin: 6px 3px;
   }
+  #app > div > div:first-child {
+    background: none;
+    backdrop-filter: none;
+    --tw-backdrop-blur: none;
+    -webkit-backdrop-filter: none;
+  }
+  div[data-headlessui-state=open] > div.fixed:last-child,
+  div[data-headlessui-state=open] > div.fixed:first-child {
+    display: none;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+    margin-bottom: 15px;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child footer, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child header, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child header ~ hr {
+    box-shadow: none;
+    background: none;
+    border: none;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article + p {
+    position: relative;
+    padding: 4px;
+    border: 1px solid var(--win9x-black);
+    border-radius: 4px;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    background-color: var(--win9x-office-comment);
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article + p:before {
+    content: " ";
+    position: absolute;
+    top: -9px;
+    right: auto;
+    bottom: auto;
+    left: 15px;
+    width: 16px;
+    height: 16px;
+    transform: rotate(225deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[name=headline],
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[placeholder^="post body"],
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background: var(--win9x-white);
+    width: calc(100% - 4px);
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[name=headline] *,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[placeholder^="post body"] *,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 *,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 * {
+    background: none;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
+    border: 1px solid var(--win9x-black);
+    border-radius: 4px;
+    background-color: var(--win9x-office-comment);
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p:first-letter,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p:first-letter {
+    text-transform: capitalize;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute div,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute div {
+    font-size: 13px;
+    line-height: 14px;
+  }
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute:after,
+  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute:after {
+    content: " ";
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: -9px;
+    left: 10%;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    background-color: var(--win9x-office-comment);
+    border: 0px solid var(--win9x-black);
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
   #app main section:not(.text-sidebarText) > div > div:last-child > span.hidden:first-child {
     display: none;
   }
@@ -150,7 +256,7 @@
   #app > div > header nav > div:nth-child(2) {
     position: fixed;
     top: 40px;
-    right: 78px;
+    right: 8px;
     bottom: auto;
     left: auto;
   }
@@ -185,90 +291,8 @@
     background-color: var(--win9x-gray);
     border: 1px dotted var(--win9x-black);
   }
-  #app main > div:last-child div.fixed {
-    position: relative;
-    margin-bottom: 16px;
-    max-width: 64px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    top: auto;
-    right: 8px;
-    bottom: 8px;
-    left: auto;
-    position: fixed;
-  }
-  #app main > div:last-child div.fixed:before {
-    content: " ";
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    background: url("https://shadenexus.com/img/win9x-wordpad.png");
-    background-repeat: no-repeat;
-  }
-  #app main > div:last-child div.fixed > svg {
-    width: 32px;
-    height: 32px;
-  }
-  #app main > div:last-child div.fixed > svg > * {
+  #app > div.fixed > a[href$="post/compose"] {
     display: none;
-  }
-  #app main > div:last-child div.fixed > svg {
-    filter: var(--filter-outline);
-    margin-bottom: 4px;
-    padding: 0 0 0 0;
-    width: 32px;
-    height: 32px;
-  }
-  #app main > div:last-child div.fixed:after {
-    content: "Quick Post";
-    font: normal 10pt var(--font-primary);
-    color: var(--win9x-black);
-    letter-spacing: 0rem;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: var(--win9x-gray);
-    border: 1px dotted var(--win9x-black);
-  }
-  form[action="https://cohost.org/rc/logout"] {
-    position: fixed;
-    top: 40px;
-    right: 8px;
-    bottom: auto;
-    left: auto;
-  }
-  form[action="https://cohost.org/rc/logout"] > button {
-    display: flex;
-    flex-direction: column;
-  }
-  form[action="https://cohost.org/rc/logout"] > button:before {
-    content: " ";
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    background: url("https://shadenexus.com/img/win9x-shutdown.png");
-    background-repeat: no-repeat;
-  }
-  form[action="https://cohost.org/rc/logout"] > button > svg {
-    width: 32px;
-    height: 32px;
-  }
-  form[action="https://cohost.org/rc/logout"] > button > svg > * {
-    display: none;
-  }
-  form[action="https://cohost.org/rc/logout"] > button, form[action="https://cohost.org/rc/logout"] > button:hover {
-    background: none;
-    border: none;
-  }
-  form[action="https://cohost.org/rc/logout"] > button > span {
-    margin-top: 28px;
-    font: normal 10pt var(--font-primary);
-    color: var(--win9x-black);
-    letter-spacing: 0rem;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: var(--win9x-gray);
-    border: 1px dotted var(--win9x-black);
   }
   #app > div > header {
     height: 32px;
@@ -311,9 +335,6 @@
   }
   #app > div > header a[href="https://cohost.org/"] > svg > path:first-child {
     fill: var(--cohost-purple);
-  }
-  #app > div > header ~ div {
-    margin-top: 32px;
   }
   #app > div > header nav > form > button:active, #app > div > header nav > a:active {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
@@ -609,7 +630,11 @@
     main {
       background-image: var(--wallpaperMax);
     }
-  } /* --- Window dressings --- */
+  }
+  body {
+    margin-top: 32px;
+  }
+  /* --- Window dressings --- */
   #app main section:not(.text-sidebarText) > div:nth-child(2) > button.flex-row.rounded-lg {
     border: 1px solid var(--win9x-black);
     border-radius: 4px;
@@ -649,10 +674,12 @@
     content: " ";
   }
   #app div[data-view=post-preview] {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
     border-radius: 0px;
+    display: grid;
+    grid-template-columns: 4rem 1fr;
     grid-template-rows: 48px 1fr;
     column-gap: 6px;
     row-gap: 0px;
@@ -698,6 +725,8 @@
     margin-right: 2px;
     padding: 1px;
     background: var(--win9x-white);
+    grid-column-start: 2;
+    overflow-x: hidden;
     /* --- POST CONTENT WARNINGS --- */
   }
   #app div[data-view=post-preview] > article > div:first-of-type {
@@ -750,9 +779,6 @@
   }
   #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300 > svg > * {
     display: none;
-  }
-  #app div[data-view=post-preview] > article > div div.break-words {
-    overflow-wrap: anywhere;
   }
   #app div[data-view=post-preview] > article > hr {
     display: none;
@@ -862,7 +888,7 @@
     │                    NOTIFICATIONS                    │
     └─────────────────────────────────────────────────────┘*/
   #app main section > div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
     border-radius: 0px;
@@ -951,7 +977,7 @@
     │                    SEARCH PAGE                      │
     └─────────────────────────────────────────────────────┘*/
   #app main section > div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     margin-bottom: 16em;
   }
@@ -1057,6 +1083,79 @@
     height: 58px;
     margin: 6px 3px;
   }
+  button[role=switch] {
+    flex-grow: 1;
+    border-radius: 0px;
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkgray);
+  }
+  button[role=switch] > span {
+    border-radius: 0px;
+  }
+  button[role=switch] > span:first-child {
+    text-align: left;
+  }
+  button[role=switch] > span:last-child {
+    text-align: right;
+  }
+  button[role=switch] > span.bg-foreground {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 10pt;
+    margin: 2px 0px 2px 4px;
+    min-width: 64px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    background: none;
+    background-color: var(--win9x-gray);
+    margin: 2px;
+  }
+  button[role=switch] > span.bg-foreground:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  button[role=switch] > span.bg-foreground:after {
+    content: " ░";
+    position: relative;
+    line-height: 0em;
+    font-size: 1.4em;
+    right: -6px;
+    top: 0px;
+  }
+  button[role=switch] > span.text-foreground {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-transform: capitalize;
+    flex-grow: 2;
+  }
+  li > a.rounded-full.bg-foreground {
+    border-radius: 0px;
+  }
+  ul:has(li > a.rounded-full.bg-foreground) {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    margin: 4px;
+    padding: 6px;
+    background-color: var(--win9x-darkwhite);
+    row-gap: 6px;
+    column-gap: 6px;
+  }
   #app img[src*=header][src*=profile] {
     position: fixed;
     object-fit: cover;
@@ -1072,7 +1171,7 @@
     │                  PROFILE SUMMARY                    │
     └─────────────────────────────────────────────────────┘*/
   #app header + div div.grid > div:has(img.mask[src*="/avatar/"]):has(h1 > a) {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     margin-top: 4em;
     padding: 0px 4px 1rem 4px;
     grid-column: 1/1;
@@ -1155,7 +1254,7 @@
     border-top: none;
   }
   #app header + div div.grid > div:has(li.select-none:has(a[href*="/tagged/"])) > div > div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
@@ -1414,7 +1513,7 @@
     left: 2vh;
   }
   #app header + div > .container > div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
     border-radius: 0px;
@@ -1544,7 +1643,7 @@
     content: " ";
   }
   #root header + div > div > div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
     border-radius: 0px;
@@ -1644,7 +1743,7 @@
     margin-bottom: 16em;
   }
 }
-@-moz-document regexp("https://cohost.org/rc/user/settings") {
+@-moz-document url("https://cohost.org/rc/user/settings") {
   /*┌─────────────────────────────────────────────────────┐
     │                       SETTINGS                      │
     └─────────────────────────────────────────────────────┘*/
@@ -1653,7 +1752,7 @@
     content: " ";
   }
   #app header + div > div.container #password-email, #app header + div > div.container #password-email ~ div {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     border-radius: 0;
     background: var(--win9x-lightgray);
     padding: 4px;
@@ -1661,6 +1760,9 @@
   #app header + div > div.container #password-email div.prose > p,
   #app header + div > div.container #password-email p.prose, #app header + div > div.container #password-email ~ div div.prose > p,
   #app header + div > div.container #password-email ~ div p.prose {
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
     font-size: 12pt;
     line-height: 14pt;
     padding: 4px;
@@ -1764,6 +1866,9 @@
     box-shadow: var(--win9x-border-outset);
     border-radius: 0;
     background: none;
+  }
+  #app header + div > div.container #password-email button.border-foreground, #app header + div > div.container #password-email ~ div button.border-foreground {
+    border: none;
   }
   #app header + div > div.container #password-email button:active, #app header + div > div.container #password-email ~ div button:active {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);

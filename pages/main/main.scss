@@ -3,16 +3,19 @@
     @import '../components/cursors';
     @import '../components/backgrounds';
     @import '../components/avatars';
+    @import '../components/compose-modal';
 
     @import 'button-timetravel';
     @import 'button-newpost';
-    @import 'button-quickpost';
-    @import 'button-logout';
     @import 'bar-taskbar';
     @import 'bar-sidebar';
     @import 'menu';
 
     @include change-background;
+
+    body {
+        margin-top: 32px;
+    }
 
     /* --- Window dressings --- */
     #app main {
@@ -34,13 +37,18 @@
     
     #app div[data-view="post-preview"] {
         @include            win9x-window;
-        grid-template-rows: 48px 1fr;
+        display:            grid;
+        grid-template-columns: 4rem 1fr;
+        grid-template-rows:  48px 1fr;
         column-gap:          6px;
         row-gap:             0px;
 
         ////////////// POST CONTENTS /////////////////////
         > article > *,
-        > article ~ div     { grid-column: 1 / span 2; }
+        > article ~ div     {
+            grid-column: 1 / span 2;
+        }
+
         > a + article > div { grid-column: 2 / span 1; }
 
         > article {
@@ -72,6 +80,8 @@
                 margin-right:   2px;
                 padding:        1px;
                 background:     var(--win9x-white);
+                grid-column-start: 2;
+                overflow-x: hidden; // without this stuff might extend
 
                 &:first-of-type {
                     margin-top: 4px;
@@ -99,8 +109,6 @@
                     &.border-gray-300   { @include replace-icon-svg("https://shadenexus.com/img/win9x-restrict.png"); }
                     &.border-cherry-300 { @include replace-icon-svg("https://shadenexus.com/img/win9x-warn.png");     }
                 }
-
-                div.break-words { overflow-wrap: anywhere; }
             }
 
             > hr { display: none; }

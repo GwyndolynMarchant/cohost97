@@ -5,8 +5,6 @@
 
     @import 'button-start';
 
-    ~ div { margin-top: 32px; }
-
     nav {
         > form > button:active, > a:active {
             @include            win9x-inset-decoration;

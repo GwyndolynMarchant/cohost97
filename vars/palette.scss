@@ -8,6 +8,7 @@
         --win9x-black-raw:      10, 10, 10;
         --win9x-black:          rgb(var(--win9x-black-raw));
         --win9x-black-shadow:   rgba(var(--win9x-black-raw), var(--shadowOpacity));
+        --contrast-shadow:      rgba(var(--win9x-black-raw), 0.1);
 
         --win9x-darkgray:   #808080; 
         --win9x-gray:       #a0a0a4;

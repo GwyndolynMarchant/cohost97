@@ -1,0 +1,12 @@
+li > a.rounded-full.bg-foreground {
+	border-radius: 0px;
+
+	ul:has(&) {
+		@include win9x-inset-decoration;
+		margin: 4px;
+		padding: 6px;
+		background-color: var(--win9x-darkwhite);
+		row-gap: 6px;
+		column-gap: 6px;
+	}
+}

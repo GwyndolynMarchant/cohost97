@@ -115,7 +115,7 @@
 }
 
 @mixin win9x-window-decorations {
-    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset);
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
 }
 
 @mixin win9x-office-comment {

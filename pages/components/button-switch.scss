@@ -1,0 +1,40 @@
+button[role="switch"] {
+	flex-grow: 1;
+	border-radius: 0px;
+	@include win9x-inset-decoration;
+	background-color: var(--win9x-darkgray);
+
+	> span {
+		border-radius: 0px;
+
+		&:first-child {
+			text-align: left;
+		}
+
+		&:last-child {
+			text-align: right;
+		}
+
+		&.bg-foreground {
+			// Selected value
+			@include win9x-button(64px);
+			background-color: var(--win9x-gray);
+			&:after {
+				content: " ░";
+				position: relative;
+				line-height: 0em;
+				font-size: 1.4em;
+				right: -6px;
+				top: 0px;
+			}
+			margin: 2px;
+		}
+
+		&.text-foreground {
+			// Other value
+			@include win9x-default-font;
+			text-transform: capitalize;
+			flex-grow: 2;
+		}
+	}
+}

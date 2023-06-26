@@ -1,0 +1,58 @@
+#app > div > div:first-child {
+	background: none;
+	backdrop-filter: none;
+	--tw-backdrop-blur: none;
+	-webkit-backdrop-filter: none;
+}
+
+ div[data-headlessui-state="open"] {
+ 	> div.fixed:last-child,
+ 	> div.fixed:first-child {
+ 		display: none;
+ 	}
+
+ 	div[data-headlessui-state="open"] > div:first-child {
+		@include        win9x-window;
+        margin-bottom:  15px;
+
+        article, footer, header, header~hr {
+            box-shadow: none;
+            background: none;
+            border:     none;
+        }
+
+        article+p {
+            position:           relative;
+            padding:            4px;
+            border:             1px solid var(--win9x-black);
+            border-radius:      4px;
+            margin-top:        -15px;
+            margin-bottom:      10px;
+
+            @include            win9x-default-font;
+            background-color:   var(--win9x-office-comment);
+            @include            bubble-arrow(before, -9px, auto, auto, 15px, 225deg);
+        }
+
+        // Post entry boxes
+        textarea[name="headline"],
+        textarea[placeholder^="post body"],
+        div:nth-child(3).placeholder-gray-700,
+        div:nth-child(4).placeholder-gray-700 {
+            @include    win9x-inset-decoration;
+            background: var(--win9x-white);
+            width:      calc(100% - 4px);
+
+            * {
+                background: none;
+                @include    win9x-default-font;
+            }
+        }
+
+        div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
+        div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
+            @include win9x-office-comment;
+            @include bubble-arrow(after, auto, auto, -9px, 10%, 45deg);
+        }
+ 	}
+ }

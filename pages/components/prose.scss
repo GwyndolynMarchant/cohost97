@@ -1,6 +1,7 @@
 div.prose > p,
 p.prose {
     @include capitalize-sentence;
+    @include win9x-default-font;
 
     font-size:   12pt;
     line-height: 14pt;

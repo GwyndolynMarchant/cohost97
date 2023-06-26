@@ -4,6 +4,8 @@
       └─────────────────────────────────────────────────────┘*/*{}  
 
     @import "components/avatars";
+    @import "components/button-switch";
+    @import "components/bubble-list-item";
 
     #app img[src*="header"][src*="profile"] {
         position:   fixed;

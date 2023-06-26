@@ -1,7 +1,0 @@
-#app main > div:last-child div.fixed {
-    @include    replace-icon-svg("https://shadenexus.com/img/win9x-wordpad.png");
-    @include    win9x-iconize("Quick Post");
-    
-    @include    offset(auto, 8px, 8px, auto);
-    position:   fixed;
-}
