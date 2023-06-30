@@ -35,7 +35,8 @@
         }
     }
     
-    #app div[data-view="post-preview"] {
+    // Posts
+    div[data-postId] {
         @include            win9x-window;
         display:            grid;
         grid-template-columns: 4rem 1fr;
@@ -43,7 +44,6 @@
         column-gap:          6px;
         row-gap:             0px;
 
-        ////////////// POST CONTENTS /////////////////////
         > article > *,
         > article ~ div     {
             grid-column: 1 / span 2;

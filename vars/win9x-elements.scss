@@ -50,6 +50,10 @@
         @include            win9x-inset-decoration;
         background-color:   var(--win9x-darkwhite);
     }
+
+    &:focus {
+        outline: 1px dotted var(--win9x-black);
+    }
 }
 
 @mixin win9x-installer-heading {

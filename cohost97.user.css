@@ -101,23 +101,33 @@
     --tw-backdrop-blur: none;
     -webkit-backdrop-filter: none;
   }
-  div[data-headlessui-state=open] > div.fixed:last-child,
-  div[data-headlessui-state=open] > div.fixed:first-child {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] > .backdrop-blur {
+    background: linear-gradient(180deg, var(--win9x-blue), var(--win9x-darkblue));
+    background-size: 100vw 100vh;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] .fixed:has(> svg) {
     display: none;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] h1 {
+    font: italic bold 32pt Arial, sans-serif;
+    text-shadow: 4px 4px 0 var(--win9x-black);
+    color: var(--win9x-white);
+    position: relative;
+    left: 0;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) {
     box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
     border-radius: 0px;
     margin-bottom: 15px;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child footer, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child header, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child header ~ hr {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) article, #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) footer, #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) header, #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) header ~ hr {
     box-shadow: none;
     background: none;
     border: none;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article + p {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) article + p {
     position: relative;
     padding: 4px;
     border: 1px solid var(--win9x-black);
@@ -129,7 +139,7 @@
     letter-spacing: 0rem;
     background-color: var(--win9x-office-comment);
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child article + p:before {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) article + p:before {
     content: " ";
     position: absolute;
     top: -9px;
@@ -144,10 +154,10 @@
     border-right-width: 1px;
     border-bottom-width: 1px;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[name=headline],
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[placeholder^="post body"],
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) textarea[name=headline],
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) textarea[placeholder^="post body"],
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
     border-top: 1px solid var(--win9x-darkgray);
     border-left: 1px solid var(--win9x-darkgray);
@@ -156,17 +166,17 @@
     background: var(--win9x-white);
     width: calc(100% - 4px);
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[name=headline] *,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child textarea[placeholder^="post body"] *,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 *,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 * {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) textarea[name=headline] *,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) textarea[placeholder^="post body"] *,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 *,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 * {
     background: none;
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
     letter-spacing: 0rem;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 > div:first-child.absolute,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 > div:first-child.absolute {
     border: 1px solid var(--win9x-black);
     border-radius: 4px;
     background-color: var(--win9x-office-comment);
@@ -174,18 +184,18 @@
     color: var(--win9x-black);
     letter-spacing: 0rem;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p:first-letter,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p:first-letter {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p:first-letter,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p:first-letter {
     text-transform: capitalize;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p, div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute div,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute div {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 > div:first-child.absolute p, #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 > div:first-child.absolute div,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 > div:first-child.absolute p,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 > div:first-child.absolute div {
     font-size: 13px;
     line-height: 14px;
   }
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(3).placeholder-gray-700 > div:first-child.absolute:after,
-  div[data-headlessui-state=open] div[data-headlessui-state=open] > div:first-child div:nth-child(4).placeholder-gray-700 > div:first-child.absolute:after {
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(3).placeholder-gray-700 > div:first-child.absolute:after,
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(2) div[role=dialog] [data-headlessui-state=open] div.flex-row:has(footer button.bg-composeButton) div:nth-child(4).placeholder-gray-700 > div:first-child.absolute:after {
     content: " ";
     position: absolute;
     top: auto;
@@ -199,6 +209,53 @@
     border: 0px solid var(--win9x-black);
     border-right-width: 1px;
     border-bottom-width: 1px;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] > .backdrop-blur {
+    backdrop-filter: grayscale(100%);
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] {
+    box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
+    background: var(--win9x-lightgray);
+    padding: 4px;
+    border-radius: 0px;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open]:hover h3 {
+    background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] h3 {
+    background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
+    font: bold 12pt var(--font-primary);
+    color: var(--win9x-white);
+    padding: 2px 6px;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] h3 ~ div.flex {
+    justify-content: space-evenly;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] button {
+    border: none;
+    font: normal 10pt var(--font-primary);
+    color: var(--win9x-black);
+    letter-spacing: 0rem;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 10pt;
+    margin: 2px 0px 2px 4px;
+    min-width: 32px;
+    height: 32px;
+    box-shadow: var(--win9x-border-outset);
+    border-radius: 0;
+    background: none;
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] button:active {
+    box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
+    border-top: 1px solid var(--win9x-darkgray);
+    border-left: 1px solid var(--win9x-darkgray);
+    border-right: 1px inset var(--win9x-white);
+    border-bottom: 1px inset var(--win9x-white);
+    background-color: var(--win9x-darkwhite);
+  }
+  #headlessui-portal-root [data-headlessui-portal]:nth-child(1n+3) div[role=dialog] div[data-headlessui-state=open] button:focus {
+    outline: 1px dotted var(--win9x-black);
   }
   #app main section:not(.text-sidebarText) > div > div:last-child > span.hidden:first-child {
     display: none;
@@ -325,6 +382,9 @@
     border-right: 1px inset var(--win9x-white);
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
+  }
+  #app > div > header a[href="https://cohost.org/"]:focus {
+    outline: 1px dotted var(--win9x-black);
   }
   #app > div > header a[href="https://cohost.org/"], #app > div > header a[href="https://cohost.org/"] > svg {
     height: 24px;
@@ -673,7 +733,7 @@
   #app main > div:before {
     content: " ";
   }
-  #app div[data-view=post-preview] {
+  div[data-postId] {
     box-shadow: 6px 6px var(--win9x-black-shadow), var(--win9x-border-outset), -1px -1px var(--contrast-shadow);
     background: var(--win9x-lightgray);
     padding: 4px;
@@ -684,40 +744,40 @@
     column-gap: 6px;
     row-gap: 0px;
   }
-  #app div[data-view=post-preview] > article > *,
-  #app div[data-view=post-preview] > article ~ div {
+  div[data-postId] > article > *,
+  div[data-postId] > article ~ div {
     grid-column: 1/span 2;
   }
-  #app div[data-view=post-preview] > a + article > div {
+  div[data-postId] > a + article > div {
     grid-column: 2/span 1;
   }
-  #app div[data-view=post-preview] > article {
+  div[data-postId] > article {
     display: contents;
     position: relative;
     box-shadow: none;
     background: none;
   }
-  #app div[data-view=post-preview] > article:hover > header {
+  div[data-postId] > article:hover > header {
     background: linear-gradient(90deg, var(--cohost-purple), rgb(181, 87, 129));
   }
-  #app div[data-view=post-preview] > article > header {
+  div[data-postId] > article > header {
     background: linear-gradient(90deg, var(--win9x-darkgray), var(--win9x-gray));
     font: bold 12pt var(--font-primary);
     color: var(--win9x-white);
     padding: 2px 6px;
   }
-  #app div[data-view=post-preview] > article > header, #app div[data-view=post-preview] > article > footer, #app div[data-view=post-preview] > article {
+  div[data-postId] > article > header, div[data-postId] > article > footer, div[data-postId] > article {
     border-radius: 0;
   }
-  #app div[data-view=post-preview] > article > header a {
+  div[data-postId] > article > header a {
     color: var(--win9x-white);
     font: 0.9em var(--font-primary);
   }
-  #app div[data-view=post-preview] > article > header a[rel=author] {
+  div[data-postId] > article > header a[rel=author] {
     max-width: 400px;
     font-weight: bold;
   }
-  #app div[data-view=post-preview] > article > div {
+  div[data-postId] > article > div {
     /* Actual post contents */
     box-shadow: inset -1px 0px var(--win9x-darkwhite), inset 1px 0px var(--win9x-black);
     border-left: 1px solid var(--win9x-darkgray);
@@ -729,19 +789,19 @@
     overflow-x: hidden;
     /* --- POST CONTENT WARNINGS --- */
   }
-  #app div[data-view=post-preview] > article > div:first-of-type {
+  div[data-postId] > article > div:first-of-type {
     margin-top: 4px;
     border-top: 1px solid var(--win9x-darkgray);
     box-shadow: inset -1px 0px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
   }
-  #app div[data-view=post-preview] > article > div:last-of-type {
+  div[data-postId] > article > div:last-of-type {
     border-bottom: 1px inset var(--win9x-white);
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 0px var(--win9x-black);
   }
-  #app div[data-view=post-preview] > article > div:only-of-type {
+  div[data-postId] > article > div:only-of-type {
     box-shadow: inset -1px -1px var(--win9x-darkwhite), inset 1px 1px var(--win9x-black);
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry {
+  div[data-postId] > article > div div.text-cherry {
     position: relative;
     background-color: var(--win9x-office-comment);
     border-color: var(--win9x-black);
@@ -750,7 +810,7 @@
     color: var(--win9x-black);
     letter-spacing: 0rem;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300:before {
+  div[data-postId] > article > div div.text-cherry.border-gray-300:before {
     content: " ";
     position: absolute;
     width: 32px;
@@ -758,14 +818,14 @@
     background: url("https://shadenexus.com/img/win9x-restrict.png");
     background-repeat: no-repeat;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300 > svg {
+  div[data-postId] > article > div div.text-cherry.border-gray-300 > svg {
     width: 32px;
     height: 32px;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-gray-300 > svg > * {
+  div[data-postId] > article > div div.text-cherry.border-gray-300 > svg > * {
     display: none;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300:before {
+  div[data-postId] > article > div div.text-cherry.border-cherry-300:before {
     content: " ";
     position: absolute;
     width: 32px;
@@ -773,43 +833,43 @@
     background: url("https://shadenexus.com/img/win9x-warn.png");
     background-repeat: no-repeat;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300 > svg {
+  div[data-postId] > article > div div.text-cherry.border-cherry-300 > svg {
     width: 32px;
     height: 32px;
   }
-  #app div[data-view=post-preview] > article > div div.text-cherry.border-cherry-300 > svg > * {
+  div[data-postId] > article > div div.text-cherry.border-cherry-300 > svg > * {
     display: none;
   }
-  #app div[data-view=post-preview] > article > hr {
+  div[data-postId] > article > hr {
     display: none;
   }
-  #app div[data-view=post-preview] > article > footer, #app div[data-view=post-preview] > article > footer > div > div {
+  div[data-postId] > article > footer, div[data-postId] > article > footer > div > div {
     background: none;
   }
-  #app div[data-view=post-preview] > article > footer a {
+  div[data-postId] > article > footer a {
     color: var(--win9x-black);
   }
-  #app div[data-view=post-preview] > article > footer a[title^=share], #app div[data-view=post-preview] > article > footer a[title^=edit], #app div[data-view=post-preview] > article > footer button {
+  div[data-postId] > article > footer a[title^=share], div[data-postId] > article > footer a[title^=edit], div[data-postId] > article > footer button {
     box-shadow: var(--win9x-border-outset);
   }
-  #app div[data-view=post-preview] > article > footer a[title^=share] {
+  div[data-postId] > article > footer a[title^=share] {
     padding: 2px 16px;
   }
-  #app div[data-view=post-preview] > article > footer a[title^=edit] {
+  div[data-postId] > article > footer a[title^=edit] {
     width: 56px;
     height: 1.7em;
   }
-  #app div[data-view=post-preview] > article > footer a[title^=edit] svg {
+  div[data-postId] > article > footer a[title^=edit] svg {
     width: 24px;
     margin-left: 16px;
     margin-top: 2px;
   }
-  #app div[data-view=post-preview] > article > footer button {
+  div[data-postId] > article > footer button {
     position: relative;
     width: 56px;
     height: 1.7em;
   }
-  #app div[data-view=post-preview] > article > footer button[title^=unlike]:before {
+  div[data-postId] > article > footer button[title^=unlike]:before {
     content: " ";
     position: absolute;
     width: 32px;
@@ -817,19 +877,19 @@
     background: url("https://shadenexus.com/img/win9x-mshearts.png");
     background-repeat: no-repeat;
   }
-  #app div[data-view=post-preview] > article > footer button[title^=unlike] > svg {
+  div[data-postId] > article > footer button[title^=unlike] > svg {
     width: 32px;
     height: 32px;
   }
-  #app div[data-view=post-preview] > article > footer button[title^=unlike] > svg > * {
+  div[data-postId] > article > footer button[title^=unlike] > svg > * {
     display: none;
   }
-  #app div[data-view=post-preview] > article > footer button[title^=unlike]:before {
+  div[data-postId] > article > footer button[title^=unlike]:before {
     top: 2px;
     margin-left: -12px;
     background-size: 24px 24px;
   }
-  #app div[data-view=post-preview] > article > footer button > svg {
+  div[data-postId] > article > footer button > svg {
     margin: 1px 16px;
   }
   #app main section > div {
@@ -1126,6 +1186,9 @@
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
   }
+  button[role=switch] > span.bg-foreground:focus {
+    outline: 1px dotted var(--win9x-black);
+  }
   button[role=switch] > span.bg-foreground:after {
     content: " ░";
     position: relative;
@@ -1336,6 +1399,9 @@
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
   }
+  #app div[data-view=post-preview] > article + div button:focus {
+    outline: 1px dotted var(--win9x-black);
+  }
   #app div[data-view=post-preview] > article ~ div > div a.mask {
     filter: var(--filter-outline);
   }
@@ -1383,6 +1449,9 @@
     border-right: 1px inset var(--win9x-white);
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
+  }
+  article[data-comment-id] div.prose + div.flex-row > *:focus {
+    outline: 1px dotted var(--win9x-black);
   }
   article[data-comment-id] div.prose + div.flex-row > * svg {
     margin: 0 auto;
@@ -1710,6 +1779,9 @@
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
   }
+  #root header + div > div > div > div > div > button:focus {
+    outline: 1px dotted var(--win9x-black);
+  }
   #root header + div > div > div > button {
     font: normal 10pt var(--font-primary);
     color: var(--win9x-black);
@@ -1732,6 +1804,9 @@
     border-right: 1px inset var(--win9x-white);
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
+  }
+  #root header + div > div > div > button:focus {
+    outline: 1px dotted var(--win9x-black);
   }
 }
 @-moz-document url("https://cohost.org/rc/posts/unpublished") {
@@ -1877,6 +1952,9 @@
     border-right: 1px inset var(--win9x-white);
     border-bottom: 1px inset var(--win9x-white);
     background-color: var(--win9x-darkwhite);
+  }
+  #app header + div > div.container #password-email button:focus, #app header + div > div.container #password-email ~ div button:focus {
+    outline: 1px dotted var(--win9x-black);
   }
   #app header + div > div.container #password-email div.rounded-lg:has(svg + div), #app header + div > div.container #password-email ~ div div.rounded-lg:has(svg + div) {
     margin-top: 8px;
